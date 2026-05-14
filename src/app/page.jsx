@@ -1,89 +1,191 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Box, Zap } from "lucide-react";
+import { 
+  Palette, 
+  Box, 
+  Zap, 
+  Camera, 
+  Eye, 
+  RotateCcw, 
+  Layers, 
+  Accessibility,
+  ShieldCheck,
+  Layout,
+  Search,
+  ChevronRight
+} from "lucide-react";
 import { cn } from "../lib/utils";
-import { GradientGenerator } from "../components/tools/GradientGenerator";
-import { PaletteGenerator } from "../components/tools/PaletteGenerator";
-import { TailwindReference } from "../components/tools/TailwindReference";
-import { useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Header } from "../components/Header";
+
+const GradientGenerator = dynamic(() => import("../components/tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
+const PaletteGenerator = dynamic(() => import("../components/tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
+const TailwindReference = dynamic(() => import("../components/tools/TailwindReference").then(mod => mod.TailwindReference), { ssr: false });
+const ImageExtractor = dynamic(() => import("../components/tools/ImageExtractor").then(mod => mod.ImageExtractor), { ssr: false });
+const ContrastChecker = dynamic(() => import("../components/tools/ContrastChecker").then(mod => mod.ContrastChecker), { ssr: false });
+const ColorDetails = dynamic(() => import("../components/tools/ColorDetails").then(mod => mod.ColorDetails), { ssr: false });
+const ShadesTints = dynamic(() => import("../components/tools/ShadesTints").then(mod => mod.ShadesTints), { ssr: false });
+const BlindnessSim = dynamic(() => import("../components/tools/BlindnessSim").then(mod => mod.BlindnessSim), { ssr: false });
+
+const STATIC_BUBBLES = [
+  { id: 1, left: '5%', width: '32px', height: '32px', delay: '0s', duration: '12s', opacity: 0.2 },
+  { id: 2, left: '15%', width: '18px', height: '18px', delay: '2s', duration: '18s', opacity: 0.1 },
+  { id: 3, left: '25%', width: '45px', height: '45px', delay: '5s', duration: '15s', opacity: 0.3 },
+  { id: 4, left: '35%', width: '22px', height: '22px', delay: '1s', duration: '20s', opacity: 0.15 },
+  { id: 5, left: '45%', width: '38px', height: '38px', delay: '8s', duration: '14s', opacity: 0.25 },
+  { id: 6, left: '55%', width: '12px', height: '12px', delay: '3s', duration: '25s', opacity: 0.1 },
+  { id: 7, left: '65%', width: '50px', height: '50px', delay: '6s', duration: '11s', opacity: 0.35 },
+  { id: 8, left: '75%', width: '28px', height: '28px', delay: '4s', duration: '17s', opacity: 0.2 },
+  { id: 9, left: '85%', width: '40px', height: '40px', delay: '9s', duration: '13s', opacity: 0.15 },
+  { id: 10, left: '95%', width: '20px', height: '20px', delay: '7s', duration: '19s', opacity: 0.25 },
+  { id: 11, left: '10%', width: '35px', height: '35px', delay: '12s', duration: '16s', opacity: 0.2 },
+  { id: 12, left: '30%', width: '15px', height: '15px', delay: '11s', duration: '22s', opacity: 0.1 },
+  { id: 13, left: '50%', width: '42px', height: '42px', delay: '14s', duration: '14s', opacity: 0.3 },
+  { id: 14, left: '70%', width: '25px', height: '25px', delay: '10s', duration: '21s', opacity: 0.15 },
+  { id: 15, left: '90%', width: '30px', height: '30px', delay: '13s', duration: '15s', opacity: 0.2 },
+];
 
 export default function Home() {
   const [activeTool, setActiveTool] = useState("gradient");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   const tools = [
-    { id: "gradient", name: "Gradient Gen", icon: Zap, color: "from-blue-500 to-cyan-400" },
-    { id: "palette", name: "Palette Gen", icon: Palette, color: "from-purple-500 to-pink-400" },
-    { id: "tailwind", name: "Tailwind Ref", icon: Box, color: "from-orange-500 to-amber-400" },
+    { id: "gradient", name: "Gradient", icon: Zap },
+    { id: "palette", name: "Palette", icon: Palette },
+    { id: "tailwind", name: "Tailwind", icon: Box },
+    { id: "extractor", name: "Extract", icon: Camera },
+    { id: "contrast", name: "A11y", icon: Eye },
+    { id: "details", name: "Convert", icon: RotateCcw },
+    { id: "shades", name: "Variants", icon: Layers },
+    { id: "blindness", name: "Vision", icon: Accessibility },
   ];
 
   return (
-    <main className="min-h-screen p-4 md:p-8 lg:p-12 flex flex-col items-center">
-      <div className="w-full max-w-6xl space-y-12">
+    <div className="min-h-screen flex flex-col items-center relative">
+      {/* Premium Background Layer */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
+        {/* Animated Mesh Gradient - Base */}
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_-20%,#3b82f6,transparent_50%),radial-gradient(circle_at_0%_100%,#8b5cf6,transparent_50%),radial-gradient(circle_at_100%_100%,#ec4899,transparent_50%)]" />
         
-        {/* Header */}
-        <header className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="space-y-1 text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              COLOR BEAST
-            </h1>
-            <p className="text-lg opacity-50 font-medium">The ultimate weapon for visual designers.</p>
-          </div>
-          
-          <nav className="flex bg-white/30 backdrop-blur-xl p-1.5 rounded-2xl border border-white/20 shadow-xl">
-            {tools.map((tool) => (
-              <button
-                key={tool.id}
-                onClick={() => setActiveTool(tool.id)}
-                className={cn(
-                  "flex items-center gap-2 px-6 py-2.5 rounded-xl transition-all duration-300 font-bold text-sm",
-                  activeTool === tool.id 
-                    ? "bg-white shadow-lg text-black scale-105" 
-                    : "opacity-60 hover:opacity-100"
-                )}
-              >
-                <tool.icon className={cn("w-4 h-4", activeTool === tool.id && "text-purple-600")} />
-                {tool.name}
-              </button>
-            ))}
-          </nav>
-        </header>
+        {/* Modern Grid Layer */}
+        <div className="grid-bg" />
 
-        {/* Content Area */}
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTool}
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              {activeTool === "gradient" && <GradientGenerator />}
-              {activeTool === "palette" && <PaletteGenerator />}
-              {activeTool === "tailwind" && <TailwindReference />}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        {/* Floating Blobs - Secondary Layer */}
+        <div className="blob blob-1 w-[800px] h-[800px] top-[-20%] left-[-10%] bg-blue-600/10" />
+        <div className="blob blob-2 w-[600px] h-[600px] bottom-[-10%] right-[-10%] bg-purple-600/10" />
+        <div className="blob blob-3 w-[400px] h-[400px] top-[30%] left-[60%] bg-pink-600/10" />
+        
+        {/* Glassmorphic Floating Bubbles */}
+        {STATIC_BUBBLES.map((b) => (
+          <div 
+            key={b.id}
+            className="bubble"
+            style={{ 
+              left: b.left,
+              width: b.width,
+              height: b.height,
+              animationDelay: b.delay,
+              animationDuration: b.duration,
+              opacity: b.opacity
+            }}
+          />
+        ))}
+        
+        {/* Noise Texture */}
+        <div className="noise" />
+      </div>
+
+      <Header />
+      
+      <main className="w-full max-w-6xl px-4 md:px-8 py-4 md:py-6 space-y-4 md:space-y-12">
+        
+        {/* Tool Switcher Section - Direct Access */}
+        <section className="space-y-2 md:space-y-8">
+          <nav className="w-full overflow-x-auto no-scrollbar pb-4 flex justify-start relative">
+            <div className="flex bg-white/50 backdrop-blur-3xl p-1.5 rounded-[2rem] border border-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.05)] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] min-w-max items-center mx-auto px-2">
+              {tools.map((tool) => (
+                <button
+                  key={tool.id}
+                  onClick={() => setActiveTool(tool.id)}
+                  className={cn(
+                    "flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3.5 rounded-[1.5rem] transition-all duration-500 font-bold text-[10px] md:text-sm whitespace-nowrap",
+                    activeTool === tool.id 
+                      ? "bg-gradient-to-tr from-indigo-600 to-purple-600 text-white shadow-[0_10px_20px_rgba(79,70,229,0.3)] scale-105" 
+                      : "opacity-40 hover:opacity-100 hover:bg-white/50"
+                  )}
+                >
+                  <tool.icon className={cn(
+                    "w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-500", 
+                    activeTool === tool.id ? "text-white" : "text-indigo-600"
+                  )} />
+                  {tool.name}
+                </button>
+              ))}
+              
+              {/* Scroll Hint Arrow for Tablet/Mobile */}
+              <div className="md:hidden flex items-center justify-center ml-2 opacity-40 animate-pulse">
+                <ChevronRight className="w-4 h-4 text-indigo-600" />
+              </div>
+            </div>
+          </nav>
+
+          <div className="relative min-h-[400px] md:min-h-[600px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTool}
+                initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+              >
+                {activeTool === "gradient" && <GradientGenerator />}
+                {activeTool === "palette" && <PaletteGenerator />}
+                {activeTool === "tailwind" && <TailwindReference />}
+                {activeTool === "extractor" && <ImageExtractor />}
+                {activeTool === "contrast" && <ContrastChecker />}
+                {activeTool === "details" && <ColorDetails />}
+                {activeTool === "shades" && <ShadesTints />}
+                {activeTool === "blindness" && <BlindnessSim />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* Footer Details - Minimal & SEO Friendly */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-black/5">
+           <div className="space-y-2">
+              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4" />
+                Privacy First
+              </h3>
+              <p className="text-xs opacity-40 leading-relaxed">All processing is done locally in your browser. No data is sent to our servers.</p>
+           </div>
+           <div className="space-y-2">
+              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
+                <Layout className="w-4 h-4" />
+                Design Systems
+              </h3>
+              <p className="text-xs opacity-40 leading-relaxed">Built for professionals managing complex color systems and accessibility.</p>
+           </div>
+           <div className="space-y-2">
+              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
+                <Search className="w-4 h-4" />
+                SEO Optimized
+              </h3>
+              <p className="text-xs opacity-40 leading-relaxed">Lightweight architecture ensures maximum speed and search engine visibility.</p>
+           </div>
+        </section>
 
         {/* Footer */}
-        <footer className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 opacity-40 text-sm font-medium">
-          <p>© 2026 Color Beast Lab. Built for speed.</p>
+        <footer className="pt-8 pb-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 text-[10px] font-black uppercase tracking-widest">
+          <p>© 2026 Color Beast. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:underline">Documentation</a>
-            <a href="#" className="hover:underline">GitHub</a>
-            <a href="#" className="hover:underline">Privacy</a>
+            <a href="#" className="hover:underline">Privacy Policy</a>
           </div>
         </footer>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }

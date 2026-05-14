@@ -4,6 +4,7 @@ import { GlassCard } from "../ui/GlassCard";
 import { Copy, Plus, Trash2, RotateCw, Layers } from "lucide-react";
 import { useState, useMemo } from "react";
 import confetti from "canvas-confetti";
+import { cn } from "@/lib/utils";
 
 export function GradientGenerator() {
   const [stops, setStops] = useState([
@@ -49,8 +50,8 @@ export function GradientGenerator() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div className="lg:col-span-7 space-y-6">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div className="md:col-span-7 space-y-6">
         <div 
           className="h-80 md:h-96 w-full rounded-3xl shadow-2xl border-4 border-white relative group overflow-hidden transition-all duration-500"
           style={{ background: gradientString }}
@@ -67,29 +68,35 @@ export function GradientGenerator() {
         </div>
         
         <GlassCard className="p-4 bg-white/10">
-          <code className="text-xs md:text-sm font-mono break-all opacity-70">
+          <code className="text-xs md:text-sm font-mono break-words whitespace-pre-wrap opacity-70">
             background: {gradientString};
           </code>
         </GlassCard>
       </div>
 
-      <div className="lg:col-span-5 space-y-6">
+      <div className="md:col-span-5 space-y-6">
         <GlassCard className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <Layers className="w-5 h-5 text-blue-500" />
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <h3 className="text-base md:text-lg font-black flex items-center gap-2 uppercase tracking-tight">
+              <Layers className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
               Configuration
             </h3>
-            <div className="flex bg-black/5 p-1 rounded-xl">
+            <div className="flex bg-black/5 p-1 rounded-xl w-full lg:w-auto">
               <button 
                 onClick={() => setType("linear")}
-                className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${type === "linear" ? "bg-white shadow-sm" : "opacity-40"}`}
+                className={cn(
+                  "flex-1 lg:flex-none px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-black transition-all",
+                  type === "linear" ? "bg-white text-indigo-600 shadow-md" : "opacity-40"
+                )}
               >
                 Linear
               </button>
               <button 
                 onClick={() => setType("radial")}
-                className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${type === "radial" ? "bg-white shadow-sm" : "opacity-40"}`}
+                className={cn(
+                  "flex-1 lg:flex-none px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-black transition-all",
+                  type === "radial" ? "bg-white text-indigo-600 shadow-md" : "opacity-40"
+                )}
               >
                 Radial
               </button>
@@ -98,7 +105,7 @@ export function GradientGenerator() {
 
           {type === "linear" && (
             <div className="space-y-3">
-              <div className="flex justify-between text-sm font-bold opacity-60">
+              <div className="flex justify-between text-xs md:text-sm font-bold opacity-60">
                 <label className="flex items-center gap-2">
                   <RotateCw className="w-4 h-4" />
                   Angle
@@ -118,7 +125,7 @@ export function GradientGenerator() {
 
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-sm font-bold opacity-60">Color Stops</label>
+              <label className="text-xs md:text-sm font-bold opacity-60">Color Stops</label>
               <button 
                 onClick={addStop}
                 className="p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"

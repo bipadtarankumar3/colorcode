@@ -28,19 +28,21 @@ export function TailwindReference() {
 
   return (
     <div className="space-y-8">
-      <div className="relative group">
-        <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 opacity-30 group-focus-within:opacity-100 transition-opacity" />
-        <input 
-          type="text" 
-          placeholder="Search colors (e.g. emerald, rose)..." 
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-white/40 backdrop-blur-xl border border-white/40 rounded-3xl py-5 pl-14 pr-6 focus:ring-4 focus:ring-blue-500/20 outline-none transition-all text-lg font-medium shadow-2xl"
-        />
+      <div className="flex flex-col items-center gap-8">
+        <div className="relative w-full max-w-xl">
+          <Search className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-4 md:w-5 h-4 md:h-5 opacity-20" />
+          <input 
+            type="text" 
+            placeholder="Search colors (e.g. emerald, rose, 500)..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-white/40 backdrop-blur-3xl border border-white/60 rounded-3xl py-4 md:py-6 pl-12 md:pl-16 pr-8 text-sm md:text-lg font-bold outline-none shadow-2xl focus:bg-white/60 transition-all placeholder:opacity-30"
+          />
+        </div>
       </div>
 
       <GlassCard className="p-0 overflow-hidden border-none shadow-2xl bg-white/30">
-        <div className="h-[600px] overflow-y-auto custom-scrollbar p-8 space-y-12">
+        <div className="h-[600px] overflow-y-auto custom-scrollbar p-4 md:p-8 space-y-12">
           {filteredColors.map(color => (
             <div key={color} className="space-y-4">
               <div className="flex items-center gap-4">

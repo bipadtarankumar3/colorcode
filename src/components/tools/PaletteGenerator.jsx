@@ -4,6 +4,7 @@ import { GlassCard } from "../ui/GlassCard";
 import { RefreshCw, Copy, Sparkles } from "lucide-react";
 import { useState, useMemo } from "react";
 import confetti from "canvas-confetti";
+import { cn } from "@/lib/utils";
 
 export function PaletteGenerator() {
   const [baseColor, setBaseColor] = useState("#6366f1");
@@ -113,16 +114,19 @@ export function PaletteGenerator() {
           />
           <div>
             <h2 className="text-2xl font-bold tracking-tight uppercase">Base Color</h2>
-            <p className="opacity-50 font-mono text-sm">{baseColor}</p>
+            <p className="opacity-50 font-mono text-sm uppercase">{baseColor}</p>
           </div>
         </div>
 
-        <div className="flex bg-white/40 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-lg">
+        <div className="flex bg-white/40 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-lg overflow-x-auto no-scrollbar max-w-full">
           {["analogous", "complementary", "triadic", "monochromatic"].map((h) => (
             <button
               key={h}
               onClick={() => setHarmony(h)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold uppercase transition-all ${harmony === h ? "bg-white text-black shadow-md" : "opacity-40 hover:opacity-100"}`}
+              className={cn(
+                "px-4 py-2 rounded-xl text-[10px] md:text-xs font-black uppercase transition-all whitespace-nowrap",
+                harmony === h ? "bg-white text-black shadow-md" : "opacity-40 hover:opacity-100"
+              )}
             >
               {h}
             </button>
@@ -131,38 +135,42 @@ export function PaletteGenerator() {
 
         <button 
           onClick={randomBase}
-          className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-2xl hover:scale-105 transition-all shadow-xl font-bold text-sm"
+          className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-2xl hover:scale-105 transition-all shadow-xl font-bold text-sm w-full md:w-auto justify-center"
         >
           <RefreshCw className="w-4 h-4" />
           RANDOMIZE
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+      {/* Palette Display */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
         {palette.map((color, i) => (
-          <GlassCard key={i} className="p-3 group relative overflow-hidden" hoverable>
-            <div 
-              className="h-48 w-full rounded-xl shadow-inner border border-black/5 mb-4 transition-transform group-hover:scale-[1.02]"
-              style={{ backgroundColor: color }}
-            />
-            <div className="flex justify-between items-center">
-              <div className="space-y-1">
-                <span className="block text-[10px] font-bold opacity-30 uppercase tracking-widest">Hex Code</span>
-                <span className="font-mono text-sm font-bold opacity-80 uppercase">{color}</span>
-              </div>
-              <button 
-                onClick={() => copyColor(color)}
-                className="p-2.5 bg-black/5 hover:bg-black/10 rounded-xl transition-colors"
-              >
-                <Copy className="w-4 h-4" />
-              </button>
-            </div>
-            {i === 2 && (
-              <div className="absolute top-5 right-5 bg-white/20 backdrop-blur-md p-1 rounded-lg border border-white/30">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
+          <div 
+            key={i} 
+            className={cn(
+              "group relative flex flex-col gap-3",
+              i === 4 ? "col-span-2 md:col-span-1" : ""
             )}
-          </GlassCard>
+          >
+            <GlassCard 
+              className="p-2 cursor-pointer transition-all duration-500 hover:scale-105 active:scale-95 group/palette"
+              onClick={() => copyColor(color)}
+            >
+              <div 
+                className="h-32 md:h-64 w-full rounded-xl shadow-inner border border-black/5"
+                style={{ backgroundColor: color }}
+              />
+              {color === baseColor && (
+                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-1.5 rounded-lg border border-white/30">
+                  <Sparkles className="w-4 h-4 text-white" />
+                </div>
+              )}
+            </GlassCard>
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-[10px] font-black opacity-30 uppercase tracking-widest">Color {i+1}</span>
+              <span className="font-mono font-bold text-xs md:text-base uppercase">{color}</span>
+            </div>
+          </div>
         ))}
       </div>
     </div>

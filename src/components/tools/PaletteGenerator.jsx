@@ -4,7 +4,7 @@ import { GlassCard } from "../ui/GlassCard";
 import { RefreshCw, Copy, Sparkles } from "lucide-react";
 import { useState, useMemo } from "react";
 import confetti from "canvas-confetti";
-import { cn } from "@/lib/utils";
+import { cn, selectColor } from "@/lib/utils";
 
 export function PaletteGenerator() {
   const [baseColor, setBaseColor] = useState("#6366f1");
@@ -90,6 +90,7 @@ export function PaletteGenerator() {
 
   const copyColor = (hex) => {
     navigator.clipboard.writeText(hex);
+    selectColor(hex);
     confetti({
       particleCount: 40,
       spread: 50,

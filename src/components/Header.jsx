@@ -2,13 +2,14 @@
 
 import { ShieldCheck, ExternalLink } from "lucide-react";
 import { cn } from "../lib/utils";
+import Link from "next/link";
 
 export function Header() {
   return (
     <header className="w-full sticky top-0 z-50">
       <div className="w-full h-16 glass flex items-center justify-center shadow-xl border-b border-white/20 bg-white/40">
         <div className="w-full max-w-6xl px-6 md:px-10 flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-4 group cursor-pointer">
+          <Link href="/" className="flex items-center gap-3 md:gap-4 group cursor-pointer">
             {/* Demo Logo SVG */}
             <div className="relative w-9 h-9 md:w-11 md:h-11 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 rounded-xl blur-[2px] opacity-20 group-hover:opacity-40 transition-opacity" />
@@ -47,7 +48,7 @@ export function Header() {
               </span>
               <span className="text-[8px] font-black tracking-[0.3em] uppercase opacity-40">Pro Suite</span>
             </div>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-4 md:gap-8">
             <div className="flex items-center gap-2 text-[10px] font-black text-indigo-600 bg-indigo-500/10 px-3 md:px-4 py-2 rounded-full border border-indigo-500/20 shadow-sm">

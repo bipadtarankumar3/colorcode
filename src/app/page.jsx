@@ -14,11 +14,14 @@ import {
   ShieldCheck,
   Layout,
   Search,
-  ChevronRight
+  ChevronRight,
+  History
 } from "lucide-react";
 import { cn } from "../lib/utils";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Header } from "../components/Header";
+import { ColorHistory } from "../components/ColorHistory";
 
 const GradientGenerator = dynamic(() => import("../components/tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
 const PaletteGenerator = dynamic(() => import("../components/tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
@@ -49,6 +52,7 @@ const STATIC_BUBBLES = [
 
 export default function Home() {
   const [activeTool, setActiveTool] = useState("gradient");
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
   const tools = [
     { id: "gradient", name: "Gradient", icon: Zap },
@@ -180,12 +184,24 @@ export default function Home() {
         {/* Footer */}
         <footer className="pt-8 pb-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 text-[10px] font-black uppercase tracking-widest">
           <p>© 2026 Color Beast. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:underline">Documentation</a>
-            <a href="#" className="hover:underline">Privacy Policy</a>
-          </div>
+            <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest opacity-40">
+              <Link href="/docs" className="hover:opacity-100 transition-opacity">Documentation</Link>
+              <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
+              <Link href="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
+            </div>
         </footer>
       </main>
+      {/* Floating History Button */}
+      <button 
+        onClick={() => setIsHistoryOpen(true)}
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-black text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group"
+      >
+        <History className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+      </button>
+
+      {/* Sidebars */}
+      <ColorHistory isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />
     </div>
   );
 }

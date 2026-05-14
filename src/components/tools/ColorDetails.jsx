@@ -4,6 +4,8 @@ import { GlassCard } from "../ui/GlassCard";
 import { Copy, RefreshCcw, Info, Check } from "lucide-react";
 import { useState, useMemo } from "react";
 import confetti from "canvas-confetti";
+import { getName } from "@/lib/ntc";
+import { cn } from "@/lib/utils";
 
 export function ColorDetails() {
   const [color, setColor] = useState("#6366f1");
@@ -51,7 +53,7 @@ export function ColorDetails() {
     }
     const cmyk = `${Math.round(c * 100)}%, ${Math.round(m * 100)}%, ${Math.round(y * 100)}%, ${Math.round(k * 100)}%`;
 
-    return { hex, rgb, hsl, cmyk };
+    return { hex, rgb, hsl, cmyk, name: getName(hex) };
   }, [color]);
 
   const copyToClipboard = (val, type) => {
@@ -100,12 +102,15 @@ export function ColorDetails() {
              <div className="bg-black/5 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
                 <div className="space-y-1">
                    <span className="text-[10px] font-black opacity-30 uppercase tracking-widest">Base Color</span>
-                   <input 
-                    type="text" 
-                    value={color}
-                    onChange={(e) => setColor(e.target.value)}
-                    className="bg-transparent font-mono font-bold text-lg outline-none uppercase"
-                   />
+                   <div className="flex flex-col">
+                     <input 
+                      type="text" 
+                      value={color}
+                      onChange={(e) => setColor(e.target.value)}
+                      className="bg-transparent font-mono font-bold text-lg outline-none uppercase"
+                     />
+                     <span className="text-xs font-bold text-indigo-600/60 uppercase">{conversions.name}</span>
+                   </div>
                 </div>
                 <button 
                   onClick={() => setColor(`#${Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')}`)}

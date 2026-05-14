@@ -4,7 +4,7 @@ import { GlassCard } from "../ui/GlassCard";
 import { Copy, Plus, Trash2, RotateCw, Layers } from "lucide-react";
 import { useState, useMemo } from "react";
 import confetti from "canvas-confetti";
-import { cn } from "@/lib/utils";
+import { cn, selectColor } from "@/lib/utils";
 
 export function GradientGenerator() {
   const [stops, setStops] = useState([
@@ -41,6 +41,7 @@ export function GradientGenerator() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(`background: ${gradientString};`);
+    stops.forEach(s => selectColor(s.color));
     confetti({
       particleCount: 100,
       spread: 70,

@@ -1,4 +1,6 @@
 import "./globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 
 export const metadata = {
   title: "Color Beast | The Ultimate Professional Color Utility Suite",
@@ -25,8 +27,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      
+      
       <body className="antialiased">
         {children}
+        <GoogleAnalytics gaId="G-MQEWLCWPRN" />
       </body>
     </html>
   );

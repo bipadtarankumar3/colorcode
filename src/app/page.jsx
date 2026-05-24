@@ -179,11 +179,14 @@ export default function Home() {
                 SEO Optimized
               </h3>
               <p className="text-xs opacity-40 leading-relaxed">Lightweight architecture ensures maximum speed and search engine visibility.</p>
+           </div>
+        </section>
       </main>
 
       <Footer />
       {/* Floating History Button */}
       <button 
+        suppressHydrationWarning
         onClick={() => setIsHistoryOpen(true)}
         className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-black text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group"
       >

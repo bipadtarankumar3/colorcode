@@ -22,6 +22,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Header } from "../components/Header";
 import { ColorHistory } from "../components/ColorHistory";
+import Footer from "../components/Footer";
 
 const GradientGenerator = dynamic(() => import("../components/tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
 const PaletteGenerator = dynamic(() => import("../components/tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
@@ -178,19 +179,9 @@ export default function Home() {
                 SEO Optimized
               </h3>
               <p className="text-xs opacity-40 leading-relaxed">Lightweight architecture ensures maximum speed and search engine visibility.</p>
-           </div>
-        </section>
-
-        <footer className="pt-8 pb-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 text-[10px] font-black uppercase tracking-widest">
-          <p>© 2026 Color Beast. All rights reserved.</p>
-            <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest opacity-40">
-              <Link href="/docs" className="hover:opacity-100 transition-opacity">Documentation</Link>
-              <Link href="https://tools.orbytara.com/services" className="hover:opacity-100 transition-opacity">Services</Link>
-              <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
-              <Link href="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
-            </div>
-        </footer>
       </main>
+
+      <Footer />
       {/* Floating History Button */}
       <button 
         onClick={() => setIsHistoryOpen(true)}

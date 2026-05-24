@@ -181,11 +181,11 @@ export default function Home() {
            </div>
         </section>
 
-        {/* Footer */}
         <footer className="pt-8 pb-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 text-[10px] font-black uppercase tracking-widest">
           <p>© 2026 Color Beast. All rights reserved.</p>
             <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest opacity-40">
               <Link href="/docs" className="hover:opacity-100 transition-opacity">Documentation</Link>
+              <Link href="https://tools.orbytara.com/services" className="hover:opacity-100 transition-opacity">Services</Link>
               <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
               <Link href="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
             </div>

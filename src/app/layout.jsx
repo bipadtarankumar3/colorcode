@@ -36,11 +36,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      
-      
+
+
       <body className="antialiased">
         {children}
-        <GoogleAnalytics gaId="G-MQEWLCWPRN" />
+        <GoogleAnalytics gaId="G-2Y0DSV87D7" />
       </body>
     </html>
   );

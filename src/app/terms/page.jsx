@@ -19,17 +19,17 @@ export default function TermsPage() {
         <div className="bg-white/40 backdrop-blur-3xl p-8 md:p-12 rounded-[2.5rem] border border-white/60 shadow-2xl space-y-8 text-slate-700 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-xl font-black uppercase tracking-widest text-black">1. Acceptance of Terms</h2>
-            <p>By accessing and using Color Beast, you agree to be bound by these Terms and Conditions. Our suite of color tools is designed for professional designers and developers.</p>
+            <p>By accessing and using Color Code, you agree to be bound by these Terms and Conditions. Our suite of color tools is designed for professional designers and developers.</p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-black uppercase tracking-widest text-black">2. Use of Service</h2>
-            <p>Color Beast provides color conversion, palette generation, and accessibility checking tools. All processing happens locally in your browser to ensure privacy and speed.</p>
+            <p>Color Code provides color conversion, palette generation, and accessibility checking tools. All processing happens locally in your browser to ensure privacy and speed.</p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-black uppercase tracking-widest text-black">3. Intellectual Property</h2>
-            <p>The branding, design, and custom code of Color Beast are the property of our team. You may use the generated palettes and CSS code for any personal or commercial projects without attribution.</p>
+            <p>The branding, design, and custom code of Color Code are the property of our team. You may use the generated palettes and CSS code for any personal or commercial projects without attribution.</p>
           </section>
 
           <section className="space-y-4">
@@ -40,7 +40,7 @@ export default function TermsPage() {
       </main>
 
       <footer className="w-full py-12 text-center opacity-30 text-[10px] font-black uppercase tracking-[0.3em]">
-        © 2026 COLOR BEAST. FRONTIER DESIGN SUITE.
+        © 2026 COLOR CODE. FRONTIER DESIGN SUITE.
       </footer>
     </div>
   );

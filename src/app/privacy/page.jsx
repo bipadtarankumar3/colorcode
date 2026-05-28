@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         <div className="bg-white/40 backdrop-blur-3xl p-8 md:p-12 rounded-[2.5rem] border border-white/60 shadow-2xl space-y-8 text-slate-700 leading-relaxed">
           <section className="space-y-4">
             <h2 className="text-xl font-black uppercase tracking-widest text-black">1. Local-First Philosophy</h2>
-            <p>At Color Beast, we believe your design data belongs to you. All color processing, image extraction, and palette generation are performed locally within your browser using JavaScript. No color data is ever sent to our servers.</p>
+            <p>At Color Code, we believe your design data belongs to you. All color processing, image extraction, and palette generation are performed locally within your browser using JavaScript. No color data is ever sent to our servers.</p>
           </section>
 
           <section className="space-y-4">
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
       </main>
 
       <footer className="w-full py-12 text-center opacity-30 text-[10px] font-black uppercase tracking-[0.3em]">
-        © 2026 COLOR BEAST. BUILT FOR PRIVACY.
+        © 2026 COLOR CODE. BUILT FOR PRIVACY.
       </footer>
     </div>
   );

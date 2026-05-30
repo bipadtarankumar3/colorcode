@@ -55,19 +55,7 @@ const logos = {
 };
 
 export default function Footer() {
-  const [synapses, setSynapses] = useState(849204912);
-  const [load, setLoad] = useState(42.8);
-  const [activeNodes, setActiveNodes] = useState(14892);
-  
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSynapses(prev => prev + Math.floor(Math.random() * 4) + 1);
-      setLoad(prev => +(prev + (Math.random() * 0.8 - 0.4)).toFixed(1));
-      setActiveNodes(prev => prev + Math.floor(Math.random() * 5 - 2));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <footer className="w-full relative border-t border-white/5 pt-24 pb-12 px-6 bg-[#050508] overflow-hidden">
@@ -121,19 +109,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Hivemind Sync (3 cols) */}
+          {/* Col 3: Get Updates On New Tools (6 cols) */}
           <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-500">
               <Cpu className="w-3.5 h-3.5" />
-              Sync with Hivemind
+              Get Updates On New Tools
             </div>
             <p className="text-xs text-white/40 leading-relaxed">
-              Connect to our weekly neural newsletter for top performing prompt sequences, tokens, and model configurations.
+              Receive practical guides, new tools, and workflow improvements.
             </p>
             <div className="space-y-2">
               <input
                 type="email"
-                placeholder="neural-address@domain.com"
+                placeholder="developer@domain.com"
                 className="w-full text-xs bg-black/40 border border-white/10 rounded-xl px-3 py-2.5 text-white placeholder-white/25 focus:outline-none focus:border-amber-500/50"
                 suppressHydrationWarning
               />
@@ -141,7 +129,7 @@ export default function Footer() {
                 className="w-full py-2.5 bg-[#0c0c14] text-white border border-white/10 rounded-xl text-xs font-bold hover:bg-[#161622] transition-colors duration-200 cursor-pointer"
                 suppressHydrationWarning
               >
-                Establish Protocol Sync
+                Subscribe
               </button>
             </div>
           </div>
@@ -194,12 +182,12 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
           <p className="text-xs text-white/30" suppressHydrationWarning>
-            © {new Date().getFullYear()} Revoxera. Neural Architecture Sync v4.8.
+            © {new Date().getFullYear()} Revoxera. Built For Developers.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 sm:justify-end">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              All Systems Operational
+              Fast. Private. Built For Developers.
             </span>
 
             <div className="flex items-center gap-2 text-[11px] font-medium text-white/20">

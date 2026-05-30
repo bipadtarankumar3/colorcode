@@ -54,7 +54,7 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
     { id: "palette", name: "Palette", icon: Palette },
     { id: "tailwind", name: "Tailwind", icon: Box },
     { id: "extractor", name: "Extract", icon: Camera },
-    { id: "contrast", name: "A11y", icon: Eye },
+    { id: "contrast", name: "Contrast", icon: Eye },
     { id: "details", name: "Convert", icon: RotateCcw },
     { id: "shades", name: "Variants", icon: Layers },
     { id: "blindness", name: "Vision", icon: Accessibility },

@@ -43,7 +43,7 @@ export function ContrastChecker() {
           <div className="space-y-1">
             <h3 className="text-xl font-bold flex items-center gap-2">
               <Eye className="w-5 h-5 text-indigo-500" />
-              A11y Validator
+              Contrast Checker
             </h3>
             <p className="text-sm opacity-40">Check contrast ratio for accessibility.</p>
           </div>

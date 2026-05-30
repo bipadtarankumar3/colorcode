@@ -95,7 +95,7 @@ const howToSchema = {
     {
       "@type": "HowToStep",
       "name": "Verify Accessibility Ratios",
-      "text": "Test your foreground and background colors in the A11y Contrast Checker to guarantee compliance with WCAG AA and AAA standards."
+      "text": "Test your foreground and background colors in the Accessibility Contrast Checker to guarantee compliance with WCAG AA and AAA standards."
     },
     {
       "@type": "HowToStep",

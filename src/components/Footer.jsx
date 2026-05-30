@@ -12,13 +12,13 @@ const FOOTER_LINKS = {
     { label: "Tailwind Color Map", href: "/tools/tailwind-color-reference" },
     { label: "Image Extractor", href: "/tools/color-extractor" },
   ],
-  "Resources": [
-    { label: "WCAG Contrast Standards", href: "/guides/wcag-contrast-standards" },
-    { label: "Color Theory Basics", href: "/guides/color-theory-basics" },
-  ],
   "Guides": [
     { label: "Accessibility Guides", href: "/guides/wcag-contrast-standards" },
     { label: "Palette Tutorials", href: "/guides/color-theory-basics" },
+  ],
+  "Resources": [
+    { label: "WCAG Contrast Standards", href: "/guides/wcag-contrast-standards" },
+    { label: "Color Theory Basics", href: "/guides/color-theory-basics" },
   ],
   "Company": [
     { label: "About Us", href: "/about" },
@@ -47,7 +47,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Dashboard / Console Section */}
+        {/* Brand, tagline & newsletter — left and right columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
 
           {/* Col 1: Brand & Positioning (6 cols) */}
@@ -59,7 +59,7 @@ export default function Footer() {
               <span className="font-sans font-black tracking-tighter text-sm text-white uppercase ml-1">Color Code</span>
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-sm font-medium">
-              Professional color tools built for modern design workflows. Generate palettes, check contrast, and build color systems.
+              Professional color tools built for modern design workflows.
             </p>
 
             {/* Contact cards */}

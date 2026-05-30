@@ -84,7 +84,7 @@ export default function WcagGuide() {
             <ol className="list-decimal list-inside space-y-2 pl-2 text-xs opacity-80">
               <li>Slightly darkening your text color if using a light background.</li>
               <li>Lightening your text color if using a dark background.</li>
-              <li>Increasing the font weight or size to shift into the "Large Text" category which has lower ratio thresholds.</li>
+              <li>Increasing the font weight or size to shift into the &quot;Large Text&quot; category which has lower ratio thresholds.</li>
             </ol>
 
             <div className="pt-6 border-t border-black/5 flex flex-col items-center">

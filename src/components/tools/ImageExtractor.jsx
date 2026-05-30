@@ -79,7 +79,7 @@ export function ImageExtractor() {
         <div className="md:col-span-8 space-y-6">
           <div 
             className={`h-[400px] w-full rounded-3xl border-2 border-dashed transition-all flex flex-col items-center justify-center gap-4 relative overflow-hidden ${
-              isDragging ? "border-blue-500 bg-blue-500/10" : "border-white/20 bg-white/5"
+              isDragging ? "border-emerald-500 bg-emerald-500/10" : "border-white/20 bg-white/5"
             }`}
             onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
             onDragLeave={() => setIsDragging(false)}

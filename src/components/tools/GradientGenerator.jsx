@@ -79,7 +79,7 @@ export function GradientGenerator() {
         <GlassCard className="space-y-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <h3 className="text-base md:text-lg font-black flex items-center gap-2 uppercase tracking-tight">
-              <Layers className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
+              <Layers className="w-4 h-4 md:w-5 md:h-5 text-emerald-500" />
               Configuration
             </h3>
             <div className="flex bg-black/5 p-1 rounded-xl w-full lg:w-auto">
@@ -87,7 +87,7 @@ export function GradientGenerator() {
                 onClick={() => setType("linear")}
                 className={cn(
                   "flex-1 lg:flex-none px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-black transition-all",
-                  type === "linear" ? "bg-white text-indigo-600 shadow-md" : "opacity-40"
+                  type === "linear" ? "bg-white text-emerald-600 shadow-md" : "opacity-40"
                 )}
               >
                 Linear
@@ -96,7 +96,7 @@ export function GradientGenerator() {
                 onClick={() => setType("radial")}
                 className={cn(
                   "flex-1 lg:flex-none px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-black transition-all",
-                  type === "radial" ? "bg-white text-indigo-600 shadow-md" : "opacity-40"
+                  type === "radial" ? "bg-white text-emerald-600 shadow-md" : "opacity-40"
                 )}
               >
                 Radial
@@ -119,7 +119,7 @@ export function GradientGenerator() {
                 max="360" 
                 value={angle}
                 onChange={(e) => setAngle(parseInt(e.target.value))}
-                className="w-full h-2 bg-black/5 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full h-2 bg-black/5 rounded-lg appearance-none cursor-pointer accent-emerald-600"
               />
             </div>
           )}
@@ -129,7 +129,7 @@ export function GradientGenerator() {
               <label className="text-xs md:text-sm font-bold opacity-60">Color Stops</label>
               <button 
                 onClick={addStop}
-                className="p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="p-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-500/20 transition-all"
               >
                 <Plus className="w-4 h-4" />
               </button>

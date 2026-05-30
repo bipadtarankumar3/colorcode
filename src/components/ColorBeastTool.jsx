@@ -65,15 +65,15 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
       {/* Premium Background Layer */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
         {/* Animated Mesh Gradient - Base */}
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_-20%,#3b82f6,transparent_50%),radial-gradient(circle_at_0%_100%,#8b5cf6,transparent_50%),radial-gradient(circle_at_100%_100%,#ec4899,transparent_50%)]" />
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_-20%,#10b981,transparent_50%),radial-gradient(circle_at_0%_100%,#059669,transparent_50%),radial-gradient(circle_at_100%_100%,#34d399,transparent_50%)]" />
         
         {/* Modern Grid Layer */}
         <div className="grid-bg" />
 
         {/* Floating Blobs - Secondary Layer */}
-        <div className="blob blob-1 w-[800px] h-[800px] top-[-20%] left-[-10%] bg-blue-600/10" />
-        <div className="blob blob-2 w-[600px] h-[600px] bottom-[-10%] right-[-10%] bg-purple-600/10" />
-        <div className="blob blob-3 w-[400px] h-[400px] top-[30%] left-[60%] bg-pink-600/10" />
+        <div className="blob blob-1 w-[800px] h-[800px] top-[-20%] left-[-10%] bg-emerald-600/5" />
+        <div className="blob blob-2 w-[600px] h-[600px] bottom-[-10%] right-[-10%] bg-teal-600/5" />
+        <div className="blob blob-3 w-[400px] h-[400px] top-[30%] left-[60%] bg-green-600/5" />
         
         {/* Glassmorphic Floating Bubbles */}
         {STATIC_BUBBLES.map((b) => (
@@ -97,7 +97,7 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
 
       <Header />
       
-      <main className="w-full max-w-6xl px-4 md:px-8 py-4 md:py-6 space-y-4 md:space-y-12">
+      <main className="w-full max-w-7xl px-2 sm:px-3 md:px-4 py-4 md:py-6 space-y-4 md:space-y-12">
         
         {/* Tool Switcher Section - Direct Access */}
         <section className="space-y-2 md:space-y-8">
@@ -110,13 +110,13 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
                   className={cn(
                     "flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3.5 rounded-[1.5rem] transition-all duration-500 font-bold text-[10px] md:text-sm whitespace-nowrap cursor-pointer",
                     activeTool === tool.id 
-                      ? "bg-gradient-to-tr from-indigo-600 to-purple-600 text-white shadow-[0_10px_20px_rgba(79,70,229,0.3)] scale-105" 
+                      ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 scale-105 shadow-sm" 
                       : "opacity-40 hover:opacity-100 hover:bg-white/50"
                   )}
                 >
                   <tool.icon className={cn(
                     "w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-500", 
-                    activeTool === tool.id ? "text-white" : "text-indigo-600"
+                    activeTool === tool.id ? "text-emerald-600 dark:text-emerald-400" : "text-emerald-600"
                   )} />
                   {tool.name}
                 </button>
@@ -124,7 +124,7 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
               
               {/* Scroll Hint Arrow for Tablet/Mobile */}
               <div className="md:hidden flex items-center justify-center ml-2 opacity-40 animate-pulse">
-                <ChevronRight className="w-4 h-4 text-indigo-600" />
+                <ChevronRight className="w-4 h-4 text-emerald-600" />
               </div>
             </div>
           </nav>

@@ -25,13 +25,13 @@ export default function AboutPage() {
       <main className="w-full max-w-4xl mx-auto px-6 py-12 flex-grow space-y-8">
         <Link 
           href="/" 
-          className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-indigo-600 hover:text-indigo-800 transition-colors uppercase"
+          className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-600 hover:text-emerald-800 transition-colors uppercase"
         >
           <ArrowLeft size={16} /> Back to Tools
         </Link>
 
         <section className="space-y-6">
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-wider border border-indigo-200 bg-indigo-50 text-indigo-600 uppercase">
+          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-wider border border-emerald-200 bg-emerald-50 text-emerald-600 uppercase">
             Our Story
           </span>
           <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
@@ -46,14 +46,14 @@ export default function AboutPage() {
               Many web color tools require server processing, display intrusive pop-up ads, or compromise privacy by tracking uploaded user files. Color Code runs entirely client-side, executing color modifications, contrast checks, and image conversions locally inside your browser sandbox.
             </p>
 
-            <h2 className="text-xl font-bold uppercase text-indigo-600 flex items-center gap-2">
+            <h2 className="text-xl font-bold uppercase text-emerald-600 flex items-center gap-2">
               <Shield className="w-5 h-5" /> Strict Local Privacy
             </h2>
             <p className="text-sm opacity-80">
               We do not track or save your images or color configurations. All scripts execute in your local JavaScript environment, ensuring full HIPAA and GDPR compatibility.
             </p>
 
-            <h2 className="text-xl font-bold uppercase text-indigo-600 flex items-center gap-2">
+            <h2 className="text-xl font-bold uppercase text-emerald-600 flex items-center gap-2">
               <Sparkles className="w-5 h-5" /> Premium UI/UX Design
             </h2>
             <p className="text-sm opacity-80">

@@ -1,7 +1,8 @@
 "use client";
 
-import { ColorBeastTool } from "../components/ColorBeastTool";
+import { LandingPage } from "../components/LandingPage";
 
 export default function Home() {
-  return <ColorBeastTool initialTool="gradient" />;
+  return <LandingPage />;
 }
+

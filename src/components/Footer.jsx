@@ -50,13 +50,18 @@ export default function Footer() {
 
           {/* Col 1: Brand & Positioning (6 cols) */}
           <div className="lg:col-span-6 space-y-6">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-indigo-500 p-0.5 shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform flex-shrink-0">
-                <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-emerald-400" />
-                </div>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-black shadow-lg border border-white/10 group-hover:scale-105 transition-transform flex items-center justify-center p-0.5 shrink-0">
+                <img 
+                  src="/logo.png" 
+                  alt="Revoxera Logo" 
+                  className="w-full h-full object-cover rounded-[10px]" 
+                />
               </div>
-              <span className="font-sans font-black tracking-tight text-sm text-white uppercase ml-1">Color Code</span>
+              <div className="flex flex-col">
+                <span className="font-sans font-black tracking-tight text-sm text-white uppercase">Color Code</span>
+                <span className="text-[9px] font-bold text-emerald-400 tracking-wider -mt-0.5 uppercase">BY REVOXERA</span>
+              </div>
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-sm font-medium">
               Professional color tools built for modern design workflows.

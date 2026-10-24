@@ -51,17 +51,21 @@ export function Header() {
         <div className="w-full max-w-7xl px-2 sm:px-3 md:px-4 flex items-center justify-between">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer z-50">
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-indigo-500 p-0.5 shadow-md shadow-emerald-500/10 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-white dark:bg-slate-900 rounded-[10px] flex items-center justify-center">
-                <Palette className="w-4 h-4 text-emerald-500" />
-              </div>
+          <Link href="/" className="flex items-center gap-3 group cursor-pointer z-50">
+            <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-black shadow-md border border-slate-800/80 group-hover:scale-105 transition-all flex items-center justify-center p-0.5">
+              <img 
+                src="/logo.png" 
+                alt="Revoxera Logo" 
+                className="w-full h-full object-cover rounded-[10px]" 
+              />
             </div>
             <div className="flex flex-col">
-              <span className="font-sans font-black tracking-tight text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1">
+              <span className="font-sans font-black tracking-tight text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
                 COLOR CODE
               </span>
-              <span className="text-[9px] font-bold text-slate-400 tracking-wider -mt-1 hidden sm:block">SUITE</span>
+              <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider -mt-1 hidden sm:block uppercase">
+                BY REVOXERA
+              </span>
             </div>
           </Link>
 

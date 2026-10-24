@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, ChevronDown, Sparkles, BookOpen, User, HelpCircle, Menu, X } from "lucide-react";
+import { ShieldCheck, ChevronDown, Sparkles, BookOpen, User, HelpCircle, Menu, X, Palette } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 import { useState, useEffect } from "react";
@@ -44,18 +44,25 @@ export function Header() {
         className={cn(
           "w-full h-16 flex items-center justify-center border-b transition-all duration-300 ease-in-out",
           isScrolled 
-            ? "bg-white dark:bg-slate-950 border-slate-100 dark:border-slate-900 shadow-md" 
+            ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-slate-200/80 dark:border-slate-800 shadow-sm" 
             : "bg-transparent border-transparent"
         )}
       >
         <div className="w-full max-w-7xl px-2 sm:px-3 md:px-4 flex items-center justify-between">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 md:gap-4 group cursor-pointer z-50">
-            <div className="relative w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-              <img src="/logo.png" alt="Color Code Logo" className="w-full h-full object-cover invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" />
+          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer z-50">
+            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-indigo-500 p-0.5 shadow-md shadow-emerald-500/10 group-hover:scale-105 transition-transform">
+              <div className="w-full h-full bg-white dark:bg-slate-900 rounded-[10px] flex items-center justify-center">
+                <Palette className="w-4 h-4 text-emerald-500" />
+              </div>
             </div>
-            <span className="font-sans font-black tracking-tighter text-sm hidden sm:block text-slate-800 dark:text-slate-100">COLOR CODE</span>
+            <div className="flex flex-col">
+              <span className="font-sans font-black tracking-tight text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1">
+                COLOR CODE
+              </span>
+              <span className="text-[9px] font-bold text-slate-400 tracking-wider -mt-1 hidden sm:block">SUITE</span>
+            </div>
           </Link>
 
           {/* Nav Items & Actions */}
@@ -69,11 +76,11 @@ export function Header() {
                 onMouseEnter={() => setIsOpen(true)}
                 onMouseLeave={() => setIsOpen(false)}
               >
-                <button className="flex items-center gap-1 text-xs font-black opacity-60 hover:opacity-100 transition-all tracking-widest uppercase cursor-pointer py-4">
+                <button className="flex items-center gap-1 text-xs font-black opacity-70 hover:opacity-100 transition-all tracking-widest uppercase cursor-pointer py-4 text-slate-700 dark:text-slate-200">
                   Tools <ChevronDown className={cn("w-3 h-3 transition-transform", isOpen && "rotate-180")} />
                 </button>
                 {isOpen && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-2xl p-4 w-64 grid gap-2">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-2xl p-4 w-64 grid gap-1.5">
                     {tools.map((t) => (
                       <Link 
                         key={t.name}
@@ -88,8 +95,8 @@ export function Header() {
               </div>
 
               <Link 
-                href="/guides/wcag-contrast-standards" 
-                className="flex items-center gap-1.5 text-xs font-black opacity-60 hover:opacity-100 transition-all tracking-widest uppercase"
+                href="/guides" 
+                className="flex items-center gap-1.5 text-xs font-black opacity-70 hover:opacity-100 transition-all tracking-widest uppercase text-slate-700 dark:text-slate-200"
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 Guides
@@ -168,7 +175,7 @@ export function Header() {
 
               {/* Guides */}
               <Link 
-                href="/guides/wcag-contrast-standards" 
+                href="/guides" 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2 text-xs font-black tracking-widest uppercase border-b border-slate-100 dark:border-slate-900 pb-4 opacity-80"
               >

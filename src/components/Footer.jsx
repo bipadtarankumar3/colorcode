@@ -11,14 +11,12 @@ const FOOTER_LINKS = {
     { label: "Contrast Checker", href: "/tools/contrast-checker" },
     { label: "Tailwind Color Map", href: "/tools/tailwind-color-reference" },
     { label: "Image Extractor", href: "/tools/color-extractor" },
+    { label: "Shades & Tints", href: "/tools/shades-tints-generator" },
   ],
   "Guides": [
-    { label: "Accessibility Guides", href: "/guides/wcag-contrast-standards" },
-    { label: "Palette Tutorials", href: "/guides/color-theory-basics" },
-  ],
-  "Resources": [
+    { label: "All Guides & Docs", href: "/guides" },
     { label: "WCAG Contrast Standards", href: "/guides/wcag-contrast-standards" },
-    { label: "Color Theory Basics", href: "/guides/color-theory-basics" },
+    { label: "Color Theory & Harmonies", href: "/guides/color-theory-basics" },
   ],
   "Company": [
     { label: "About Us", href: "/about" },
@@ -53,10 +51,12 @@ export default function Footer() {
           {/* Col 1: Brand & Positioning (6 cols) */}
           <div className="lg:col-span-6 space-y-6">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0 bg-transparent">
-                <img src="/logo.png" alt="Color Code Logo" className="w-full h-full object-cover invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" />
+              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-indigo-500 p-0.5 shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform flex-shrink-0">
+                <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                </div>
               </div>
-              <span className="font-sans font-black tracking-tighter text-sm text-white uppercase ml-1">Color Code</span>
+              <span className="font-sans font-black tracking-tight text-sm text-white uppercase ml-1">Color Code</span>
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-sm font-medium">
               Professional color tools built for modern design workflows.

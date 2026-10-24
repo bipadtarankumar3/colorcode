@@ -45,9 +45,38 @@ const STATIC_BUBBLES = [
   { id: 10, left: '95%', width: '20px', height: '20px', delay: '7s', duration: '19s', opacity: 0.25 },
 ];
 
+const TOOL_SLUGS = {
+  gradient: "/tools/gradient-generator",
+  palette: "/tools/palette-generator",
+  tailwind: "/tools/tailwind-color-reference",
+  extractor: "/tools/color-extractor",
+  contrast: "/tools/contrast-checker",
+  details: "/tools/color-converter-details",
+  shades: "/tools/shades-tints-generator",
+  blindness: "/tools/color-blindness-simulator",
+};
+
+const TOOL_META = {
+  gradient: { title: "Gradient Generator", desc: "Build multi-stop linear and radial gradients with CSS & Tailwind export." },
+  palette: { title: "Harmonic Palette Generator", desc: "Craft balanced, analogous, triadic, and complementary palettes." },
+  tailwind: { title: "Tailwind Color Reference", desc: "Inspect and copy complete Tailwind CSS color shades with exact hex codes." },
+  extractor: { title: "Image Color Extractor", desc: "Extract dominant color swatches directly from images in your browser." },
+  contrast: { title: "WCAG Contrast Checker", desc: "Test foreground and background color combinations for accessibility compliance." },
+  details: { title: "Color Details & Converter", desc: "Convert between HEX, RGB, HSL, HSV, CMYK, and identify nearest named hues." },
+  shades: { title: "Shades & Tints Generator", desc: "Generate precise 10-step lighter tints and darker shades for any base color." },
+  blindness: { title: "Color Blindness Simulator", desc: "Simulate 8 visual deficiency modes to ensure accessible UI designs." },
+};
+
 export function ColorBeastTool({ initialTool = "gradient" }) {
   const [activeTool, setActiveTool] = useState(initialTool);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
+  const handleToolSelect = (id) => {
+    setActiveTool(id);
+    if (typeof window !== "undefined" && TOOL_SLUGS[id]) {
+      window.history.pushState(null, "", TOOL_SLUGS[id]);
+    }
+  };
 
   const tools = [
     { id: "gradient", name: "Gradient", icon: Zap },
@@ -59,6 +88,8 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
     { id: "shades", name: "Variants", icon: Layers },
     { id: "blindness", name: "Vision", icon: Accessibility },
   ];
+
+  const currentMeta = TOOL_META[activeTool] || TOOL_META.gradient;
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center relative">
@@ -97,46 +128,51 @@ export function ColorBeastTool({ initialTool = "gradient" }) {
 
       <Header />
       
-      <main className="w-full max-w-7xl px-2 sm:px-3 md:px-4 py-4 md:py-6 space-y-4 md:space-y-12">
+      <main className="w-full max-w-7xl px-3 sm:px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-10">
         
         {/* Tool Switcher Section - Direct Access */}
-        <section className="space-y-2 md:space-y-8">
-          <nav className="w-full overflow-x-auto no-scrollbar pb-4 flex justify-start relative">
-            <div className="flex bg-white/50 backdrop-blur-3xl p-1.5 rounded-[2rem] border border-white/60 shadow-[0_10px_30px_rgba(0,0,0,0.05)] md:shadow-[0_20px_50px_rgba(0,0,0,0.1)] min-w-max items-center mx-auto px-2">
+        <section className="space-y-6">
+          <nav className="w-full overflow-x-auto no-scrollbar pb-2 flex justify-start sm:justify-center relative">
+            <div className="flex bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-1.5 rounded-[2rem] border border-slate-200/80 dark:border-slate-800 shadow-sm min-w-max items-center mx-auto px-2 gap-1">
               {tools.map((tool) => (
                 <button
                   key={tool.id}
-                  onClick={() => setActiveTool(tool.id)}
+                  onClick={() => handleToolSelect(tool.id)}
                   className={cn(
-                    "flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3.5 rounded-[1.5rem] transition-all duration-500 font-bold text-[10px] md:text-sm whitespace-nowrap cursor-pointer",
+                    "flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-[1.5rem] transition-all duration-300 font-bold text-xs sm:text-sm whitespace-nowrap cursor-pointer",
                     activeTool === tool.id 
-                      ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 scale-105 shadow-sm" 
-                      : "opacity-40 hover:opacity-100 hover:bg-white/50"
+                      ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 shadow-sm" 
+                      : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
                   )}
                 >
                   <tool.icon className={cn(
-                    "w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-500", 
-                    activeTool === tool.id ? "text-emerald-600 dark:text-emerald-400" : "text-emerald-600"
+                    "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300", 
+                    activeTool === tool.id ? "text-emerald-600 dark:text-emerald-400 scale-110" : "text-slate-400"
                   )} />
                   {tool.name}
                 </button>
               ))}
-              
-              {/* Scroll Hint Arrow for Tablet/Mobile */}
-              <div className="md:hidden flex items-center justify-center ml-2 opacity-40 animate-pulse">
-                <ChevronRight className="w-4 h-4 text-emerald-600" />
-              </div>
             </div>
           </nav>
 
-          <div className="relative min-h-[400px] md:min-h-[600px]">
+          {/* Active Tool Headline */}
+          <div className="text-center max-w-xl mx-auto space-y-1 pt-2">
+            <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white">
+              {currentMeta.title}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+              {currentMeta.desc}
+            </p>
+          </div>
+
+          <div className="relative min-h-[400px] md:min-h-[550px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTool}
-                initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
-                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
               >
                 {activeTool === "gradient" && <GradientGenerator />}
                 {activeTool === "palette" && <PaletteGenerator />}

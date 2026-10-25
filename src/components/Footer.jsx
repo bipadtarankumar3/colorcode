@@ -198,23 +198,63 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Column 4: Colophon */}
+            {/* Column 4: Revoxera Apps */}
             <div className="space-y-3">
               <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block">
-                Colophon
+                Revoxera Apps
               </span>
-              <ul className="space-y-2 text-xs text-gray-500 leading-relaxed">
+              <ul className="space-y-2 text-xs">
                 <li>
-                  <span className="font-medium text-gray-700">Next.js & CSS</span>
+                  <a
+                    href="https://sqlformatter.revoxera.com/formatter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-700 transition-colors flex items-center gap-1 font-medium"
+                  >
+                    <span>SQL Formatter</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
+                  </a>
                 </li>
                 <li>
-                  <span>100% Client-Side</span>
+                  <a
+                    href="https://caseconverter.revoxera.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-purple-700 transition-colors flex items-center gap-1 font-medium"
+                  >
+                    <span>Case Converter</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
+                  </a>
                 </li>
                 <li>
-                  <span>Zero Tracker Privacy</span>
+                  <a
+                    href="https://ai-prompt.revoxera.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-amber-700 transition-colors flex items-center gap-1 font-medium"
+                  >
+                    <span>AI Prompt Generator</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
+                  </a>
                 </li>
                 <li>
-                  <span>Fast & Free</span>
+                  <a
+                    href="https://json-formatter-mapper.revoxera.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-rose-700 transition-colors flex items-center gap-1 font-medium"
+                  >
+                    <span>JSON Formatter</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
+                  </a>
+                </li>
+                <li className="pt-1">
+                  <Link
+                    href="/services"
+                    className="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1"
+                  >
+                    <span>All Services & Tools →</span>
+                  </Link>
                 </li>
               </ul>
             </div>

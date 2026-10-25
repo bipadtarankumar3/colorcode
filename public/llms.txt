@@ -28,6 +28,14 @@
 - [Mastering WCAG 2.1 Accessibility](https://colorcode.revoxera.com/blog/wcag-contrast-standards): How to design accessible websites compliant with Section 508 and ADA standards.
 - [Building Scalable Design Systems](https://colorcode.revoxera.com/blog/creating-design-system-palettes): Token naming conventions, semantic scales (50-950), and dark-mode contrast preservation.
 
+## Revoxera Developer Suite & Ecosystem
+
+- [Services & Tools Directory](https://colorcode.revoxera.com/services): Overview of all developer tools and engineering services.
+- [SQL Formatter & Beautifier](https://sqlformatter.revoxera.com/formatter): Free online SQL query indentation, formatting, and dialect syntax validation.
+- [Smart Case Converter](https://caseconverter.revoxera.com/): Instant conversion across camelCase, snake_case, PascalCase, and kebab-case.
+- [AI Prompt Generator & Studio](https://ai-prompt.revoxera.com/): AI prompt engineering, persona conditioning, and LLM prompt structuring.
+- [JSON Formatter & Data Mapper](https://json-formatter-mapper.revoxera.com/): Interactive JSON validator, collapsible tree viewer, and data mapper.
+
 ## Privacy & Security
 
 All calculations, image processing, and eyedropper extractions are performed entirely client-side using native HTML5 Canvas and Web APIs. Zero user images or color telemetry are stored or transmitted to external servers.

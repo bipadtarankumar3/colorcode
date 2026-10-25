@@ -111,13 +111,13 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all group ${
                   isActive
                     ? "text-emerald-800 bg-emerald-50 border border-emerald-200/90 shadow-2xs"
-                    : "text-gray-600 hover:text-emerald-700 hover:bg-emerald-50/50"
+                    : "text-gray-900 hover:text-emerald-700 hover:bg-emerald-50/70"
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-emerald-600" : "text-gray-400 group-hover:text-emerald-600"}`} />
+                <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? "text-emerald-600" : "text-gray-700 group-hover:text-emerald-600"}`} />
                 <span>{item.name}</span>
               </Link>
             );
@@ -133,13 +133,13 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg transition-all group ${
                   isActive
                     ? "text-emerald-800 bg-emerald-50 border border-emerald-200"
-                    : "text-gray-600 hover:text-emerald-700 hover:bg-emerald-50/50"
+                    : "text-gray-900 hover:text-emerald-700 hover:bg-emerald-50/70"
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-emerald-600" : "text-gray-400"}`} />
+                <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? "text-emerald-600" : "text-gray-700 group-hover:text-emerald-600"}`} />
                 <span>{item.name}</span>
               </Link>
             );
@@ -156,12 +156,12 @@ export function Header() {
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-colors border cursor-pointer ${
                 servicesOpen
                   ? "bg-emerald-50 text-emerald-800 border-emerald-300"
-                  : "bg-gray-50 text-gray-700 hover:text-gray-900 border-gray-200 hover:border-gray-300"
+                  : "bg-white text-gray-900 hover:text-emerald-700 border-gray-300 hover:border-emerald-300 hover:bg-emerald-50/40 shadow-2xs"
               }`}
             >
               <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
               <span>Services & Tools</span>
-              <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+              <ChevronDown className={`w-3.5 h-3.5 text-gray-600 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
             </button>
 
             {/* Mega Dropdown Panel */}
@@ -257,10 +257,10 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className={`text-xs font-semibold transition-colors px-2 py-1.5 rounded-md ${
+              className={`text-xs font-bold transition-colors px-2.5 py-1.5 rounded-lg ${
                 pathname === item.href
-                  ? "text-emerald-700 font-bold"
-                  : "text-gray-500 hover:text-emerald-700"
+                  ? "text-emerald-700 font-extrabold bg-emerald-50"
+                  : "text-gray-900 hover:text-emerald-700 hover:bg-gray-100"
               }`}
             >
               {item.name}
@@ -281,9 +281,9 @@ export function Header() {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle navigation"
-          className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-emerald-700 hover:bg-emerald-50 focus:outline-hidden cursor-pointer"
+          className="lg:hidden p-2 rounded-lg text-gray-800 hover:text-emerald-700 hover:bg-emerald-50 focus:outline-hidden cursor-pointer"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 text-gray-700" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 text-gray-800" />}
         </button>
       </div>
 
@@ -304,13 +304,13 @@ export function Header() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg ${
+                    className={`flex items-center gap-2 px-3 py-2 text-xs font-bold rounded-lg ${
                       isActive
                         ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
-                        : "text-gray-700 hover:bg-emerald-50/50 hover:text-emerald-700"
+                        : "text-gray-900 hover:bg-emerald-50/70 hover:text-emerald-700"
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${isActive ? "text-emerald-600" : "text-gray-400"}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? "text-emerald-600" : "text-gray-600"}`} />
                     <span>{item.name}</span>
                   </Link>
                 );

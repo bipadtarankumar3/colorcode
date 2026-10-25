@@ -1,0 +1,33 @@
+# Color Codes by Revoxera
+
+> Color Codes (https://colorcode.revoxera.com) is a high-performance, privacy-first color toolkit and reference directory for web developers, designers, and software engineers. Built with client-side zero-upload processing, it provides color conversion across HEX, RGB, HSL, and OKLCH, WCAG 2.1 accessibility auditing, interactive harmonic palette generation, and comprehensive design system charts.
+
+## Primary Tools & Endpoints
+
+- [Interactive Color Picker](https://colorcode.revoxera.com/): 2D saturation/brightness canvas with real-time spectrum hue slider, native EyeDropper API integration, instant WCAG contrast scoring against black/white, and 1-click export to CSS variables, HEX arrays, and SVG swatches.
+- [CSS Gradient Generator](https://colorcode.revoxera.com/tools/gradient-generator): Linear and radial gradient builder with multi-stop color controls, angle adjustments, and ready-to-use CSS / Tailwind CSS class outputs.
+- [Harmonic Palette Generator](https://colorcode.revoxera.com/tools/palette-generator): Algorithmic color harmony builder calculating complementary (180°), split-complementary (150°/210°), triadic (120°), tetradic (90°), and analogous (±30°) color schemes.
+- [Image Color Extractor](https://colorcode.revoxera.com/tools/color-extractor): Client-side image palette extractor featuring 10x pixel magnification loupe, dominant color cluster analysis, and frequency metrics without server uploads.
+- [WCAG Color Contrast Checker](https://colorcode.revoxera.com/tools/contrast-checker): Real-time accessibility validator testing foreground and background pairs against WCAG 2.1 AA (4.5:1 for regular text, 3:1 for large) and AAA (7:1 for regular text, 4.5:1 for large) standards.
+- [Shades & Tints Generator](https://colorcode.revoxera.com/tools/shades-tints-generator): Generates 10 lighter tints (mixed toward white) and 10 darker shades (mixed toward black) for any base color.
+- [Tailwind Color Reference](https://colorcode.revoxera.com/tools/tailwind-color-reference): Complete reference matrix for Tailwind CSS v4 color tokens and all 148 standard W3C CSS named colors.
+- [Color Blindness Simulator](https://colorcode.revoxera.com/tools/color-blindness-simulator): 8-mode chromatic deficiency simulator covering Protanopia, Protanomaly, Deuteranopia, Deuteranomaly, Tritanopia, Tritanomaly, Achromatopsia, and Achromatomaly.
+
+## Supported Color Spaces & Formulas
+
+- **HEX**: Hexadecimal representation (`#RRGGBB` or `#RRGGBBAA`).
+- **RGB**: Red, Green, Blue in standard 0-255 sRGB color space (`rgb(r, g, b)`).
+- **HSL**: Hue (0-360°), Saturation (0-100%), Lightness (0-100%) (`hsl(h, s%, l%)`).
+- **OKLCH**: Perceptually uniform cylindrical color space (`oklch(L C H)`), where L is perceived lightness (0-1), C is chroma (0-0.4), and H is hue angle (0-360°).
+- **WCAG 2.1 Relative Luminance**: `L = 0.2126 * R + 0.7152 * G + 0.0722 * B`, where color channels are linear sRGB components. Contrast ratio = `(L1 + 0.05) / (L2 + 0.05)`.
+
+## Educational Guides & Documentation
+
+- [Color Theory Fundamentals](https://colorcode.revoxera.com/blog/color-theory-basics): Complete guide to hue, value, saturation, and the psychology of chromatic design.
+- [Modern Color Spaces (OKLCH vs HEX vs RGB)](https://colorcode.revoxera.com/blog/understanding-oklch-hex-rgb): Why OKLCH delivers uniform perceived brightness and avoids muddy gradients compared to legacy sRGB spaces.
+- [Mastering WCAG 2.1 Accessibility](https://colorcode.revoxera.com/blog/wcag-contrast-standards): How to design accessible websites compliant with Section 508 and ADA standards.
+- [Building Scalable Design Systems](https://colorcode.revoxera.com/blog/creating-design-system-palettes): Token naming conventions, semantic scales (50-950), and dark-mode contrast preservation.
+
+## Privacy & Security
+
+All calculations, image processing, and eyedropper extractions are performed entirely client-side using native HTML5 Canvas and Web APIs. Zero user images or color telemetry are stored or transmitted to external servers.

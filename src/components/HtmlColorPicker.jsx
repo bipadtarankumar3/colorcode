@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { getName } from "@/lib/ntc";
+import { FeatureDemos } from "./FeatureDemos";
 
 // Color math helpers
 function hsvToRgb(h, s, v) {
@@ -1022,6 +1023,9 @@ export function HtmlColorPicker() {
           </Link>
         </div>
       </section>
+
+      {/* Interactive Tool Demos & Feature Highlights */}
+      <FeatureDemos />
 
       {/* Human, Educational Guide Content below the tool */}
       <section className="pt-8 border-t border-gray-200 space-y-6 text-gray-700 text-sm leading-relaxed max-w-4xl">

@@ -407,13 +407,13 @@ export function Header() {
               <ChevronDown className={`w-3.5 h-3.5 text-gray-600 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
             </button>
 
-            {/* Mega Dropdown Panel with 3 Columns */}
+            {/* Mega Dropdown Panel with Responsive Columns */}
             {servicesOpen && (
-              <div className="absolute right-0 top-full mt-2 w-[720px] bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="grid grid-cols-12 gap-6">
+              <div className="absolute right-0 top-full mt-2 w-[92vw] sm:w-[680px] max-w-[680px] bg-white border border-gray-200 rounded-2xl shadow-2xl p-4 sm:p-6 z-50 animate-in fade-in zoom-in-95 duration-150 max-h-[85vh] overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
                   
-                  {/* Column 1: Color Codes Suite (5 cols) */}
-                  <div className="col-span-5 space-y-3 border-r border-gray-100 pr-4">
+                  {/* Column 1: Color Codes Suite */}
+                  <div className="col-span-1 md:col-span-5 space-y-3 md:border-r border-gray-100 md:pr-4">
                     <div className="flex items-center justify-between pb-1 border-b border-gray-100">
                       <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800">
                         Color Tools
@@ -423,7 +423,7 @@ export function Header() {
                       </span>
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-1">
                       {colorToolsList.slice(0, 6).map((tool) => {
                         const Icon = tool.icon;
                         return (
@@ -450,8 +450,8 @@ export function Header() {
                     </div>
                   </div>
 
-                  {/* Column 2: Revoxera Web Tools (Requested external apps) (4 cols) */}
-                  <div className="col-span-4 space-y-3 border-r border-gray-100 pr-4">
+                  {/* Column 2: Revoxera Web Tools (Requested external apps) */}
+                  <div className="col-span-1 md:col-span-4 space-y-3 pt-3 md:pt-0 border-t md:border-t-0 md:border-r border-gray-100 md:pr-4">
                     <div className="flex items-center justify-between pb-1 border-b border-gray-100">
                       <span className="text-[11px] font-extrabold uppercase tracking-wider text-purple-800">
                         Revoxera Apps
@@ -504,8 +504,8 @@ export function Header() {
                     </div>
                   </div>
 
-                  {/* Column 3: Revoxera Studio Services (3 cols) */}
-                  <div className="col-span-3 space-y-3 flex flex-col justify-between bg-gray-50/70 p-3 rounded-xl border border-gray-100">
+                  {/* Column 3: Revoxera Studio Services */}
+                  <div className="col-span-1 md:col-span-3 space-y-3 flex flex-col justify-between bg-gray-50/70 p-3 rounded-xl border border-gray-100">
                     <div className="space-y-2.5">
                       <div className="pb-1 border-b border-gray-200">
                         <span className="text-[11px] font-extrabold uppercase tracking-wider text-gray-900">

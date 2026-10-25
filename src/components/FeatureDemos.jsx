@@ -248,6 +248,20 @@ export function FeatureDemos() {
     setLoupeColor(activePreset.palette[index]);
   };
 
+  const handleCanvasTouch = (e) => {
+    if (!canvasCardRef.current || !e.touches || !e.touches[0]) return;
+    const rect = canvasCardRef.current.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = Math.max(0, Math.min(rect.width, touch.clientX - rect.left));
+    const y = Math.max(0, Math.min(rect.height, touch.clientY - rect.top));
+    setLoupePos({ x, y });
+    setIsHoveringCanvas(true);
+
+    const ratio = x / rect.width;
+    const index = Math.min(activePreset.palette.length - 1, Math.floor(ratio * activePreset.palette.length));
+    setLoupeColor(activePreset.palette[index]);
+  };
+
   // ─────────────────────────────────────────────────────────────
   // DEMO 2 STATE: Color Wheel & Live UI Card Simulation
   // ─────────────────────────────────────────────────────────────
@@ -361,8 +375,11 @@ export function FeatureDemos() {
               onMouseEnter={() => setIsHoveringCanvas(true)}
               onMouseLeave={() => setIsHoveringCanvas(false)}
               onMouseMove={handleCanvasMouseMove}
+              onTouchStart={handleCanvasTouch}
+              onTouchMove={handleCanvasTouch}
+              onTouchEnd={() => setIsHoveringCanvas(false)}
               onClick={() => copyCode(loupeColor)}
-              className="relative w-full h-64 sm:h-72 rounded-xl overflow-hidden shadow-inner border border-gray-200 cursor-crosshair select-none group"
+              className="relative w-full h-56 sm:h-72 rounded-xl overflow-hidden shadow-inner border border-gray-200 cursor-crosshair select-none group"
               style={{ background: activePreset.gradient }}
             >
               {/* Subtle mesh background grid */}
@@ -374,9 +391,9 @@ export function FeatureDemos() {
               />
 
               {/* Hover Instructions Badge */}
-              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-bold text-gray-900 border border-gray-200/80 shadow-2xs flex items-center gap-1.5">
+              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-bold text-gray-900 border border-gray-200/80 shadow-2xs flex items-center gap-1.5">
                 <Eye className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Move cursor to inspect pixels & click to copy</span>
+                <span>Tap or move cursor to inspect pixels</span>
               </div>
 
               {/* Interactive Magnifier Loupe following cursor */}
@@ -385,7 +402,7 @@ export function FeatureDemos() {
                   className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-20"
                   style={{ left: `${loupePos.x}px`, top: `${loupePos.y}px` }}
                 >
-                  <div className="w-16 h-16 rounded-full border-3 border-white shadow-2xl flex items-center justify-center overflow-hidden relative"
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-3 border-white shadow-2xl flex items-center justify-center overflow-hidden relative"
                     style={{ backgroundColor: loupeColor }}
                   >
                     {/* Crosshairs */}
@@ -401,13 +418,13 @@ export function FeatureDemos() {
               )}
 
               {/* Dominant Palette Pins */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-black/60 backdrop-blur-md px-3 py-2 rounded-xl border border-white/20">
-                <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 rounded-full border border-white shadow-xs" style={{ backgroundColor: loupeColor }} />
+              <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between bg-black/70 backdrop-blur-md px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl border border-white/20">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-white shadow-xs shrink-0" style={{ backgroundColor: loupeColor }} />
                   <span className="text-xs font-mono font-bold text-white tracking-wider">
                     {loupeColor}
                   </span>
-                  <span className="text-[11px] font-semibold text-gray-300 hidden sm:inline">
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-gray-300 hidden md:inline">
                     · Contrast on white: {getContrastRatio(loupeColor, "#FFFFFF")}:1
                   </span>
                 </div>
@@ -416,10 +433,10 @@ export function FeatureDemos() {
                     e.stopPropagation();
                     copyCode(loupeColor);
                   }}
-                  className="px-2.5 py-1 rounded-md bg-white text-gray-900 text-[11px] font-bold hover:bg-emerald-50 transition-colors flex items-center gap-1 shadow-2xs cursor-pointer"
+                  className="px-2 sm:px-2.5 py-1 rounded-md bg-white text-gray-900 text-[10px] sm:text-[11px] font-bold hover:bg-emerald-50 transition-colors flex items-center gap-1 shadow-2xs cursor-pointer shrink-0"
                 >
                   {copiedHex === loupeColor ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                  <span>{copiedHex === loupeColor ? "Copied!" : "Copy Hex"}</span>
+                  <span>{copiedHex === loupeColor ? "Copied" : "Copy"}</span>
                 </button>
               </div>
             </div>
@@ -427,10 +444,10 @@ export function FeatureDemos() {
             {/* Extracted Dominant Swatches with frequency percentages */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-[11px] font-bold text-gray-800">
-                <span>Extracted Dominant Swatches ({activePreset.palette.length})</span>
-                <span className="text-gray-600 font-normal">Click swatch to copy</span>
+                <span>Extracted Swatches ({activePreset.palette.length})</span>
+                <span className="text-gray-600 font-normal">Tap to copy</span>
               </div>
-              <div className="grid grid-cols-6 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                 {activePreset.palette.map((hex, i) => (
                   <button
                     key={hex}
@@ -521,11 +538,11 @@ export function FeatureDemos() {
               
               {/* Left: Dynamic Color Wheel */}
               <div className="sm:col-span-6 flex flex-col items-center justify-center space-y-3">
-                <div className="relative w-48 h-48 sm:w-52 sm:h-52 rounded-full p-2 flex items-center justify-center shadow-md border border-gray-200 bg-white">
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full p-2 flex items-center justify-center shadow-md border border-gray-200 bg-white">
                   
                   {/* Outer Hue Ring */}
                   <div 
-                    className="w-full h-full rounded-full relative flex items-center justify-center p-3 shadow-inner cursor-pointer"
+                    className="w-full h-full rounded-full relative flex items-center justify-center p-3 shadow-inner cursor-pointer select-none touch-none"
                     style={{
                       background: `conic-gradient(from 0deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00)`,
                     }}
@@ -534,6 +551,28 @@ export function FeatureDemos() {
                       const cx = rect.left + rect.width / 2;
                       const cy = rect.top + rect.height / 2;
                       const rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+                      let deg = Math.round((rad * 180) / Math.PI) + 90;
+                      if (deg < 0) deg += 360;
+                      setWheelHue(deg % 360);
+                    }}
+                    onTouchStart={(e) => {
+                      if (!e.touches || !e.touches[0]) return;
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const touch = e.touches[0];
+                      const cx = rect.left + rect.width / 2;
+                      const cy = rect.top + rect.height / 2;
+                      const rad = Math.atan2(touch.clientY - cy, touch.clientX - cx);
+                      let deg = Math.round((rad * 180) / Math.PI) + 90;
+                      if (deg < 0) deg += 360;
+                      setWheelHue(deg % 360);
+                    }}
+                    onTouchMove={(e) => {
+                      if (!e.touches || !e.touches[0]) return;
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const touch = e.touches[0];
+                      const cx = rect.left + rect.width / 2;
+                      const cy = rect.top + rect.height / 2;
+                      const rad = Math.atan2(touch.clientY - cy, touch.clientX - cx);
                       let deg = Math.round((rad * 180) / Math.PI) + 90;
                       if (deg < 0) deg += 360;
                       setWheelHue(deg % 360);
@@ -764,31 +803,33 @@ export function FeatureDemos() {
             </div>
 
             {/* Matrix Swatches Grid */}
-            <div className="space-y-1.5 overflow-x-auto pb-1">
-              {DESIGN_SYSTEMS[activeSystem].rows.map((row) => (
-                <div key={row.name} className="flex items-center gap-1.5">
-                  <span className="w-20 text-[11px] font-bold text-gray-700 truncate text-right pr-2">
-                    {row.name}
-                  </span>
-                  <div className="flex-1 flex gap-1">
-                    {row.colors.map((color, idx) => {
-                      const isSelected = inspectedColor.hex.toLowerCase() === color.toLowerCase();
-                      const shadeName = DESIGN_SYSTEMS[activeSystem].shades[idx];
-                      return (
-                        <button
-                          key={color + idx}
-                          onClick={() => handleSelectMatrixSwatch(color, row.name, shadeName)}
-                          className={`h-7 sm:h-8 flex-1 rounded transition-all cursor-pointer relative group ${
-                            isSelected ? "ring-2 ring-black scale-110 z-10 shadow-md" : "hover:scale-105"
-                          }`}
-                          style={{ backgroundColor: color }}
-                          title={`${row.name} ${shadeName}: ${color}`}
-                        />
-                      );
-                    })}
+            <div className="space-y-1.5 overflow-x-auto pb-2 -mx-1 px-1">
+              <div className="min-w-[440px] sm:min-w-0 space-y-1.5">
+                {DESIGN_SYSTEMS[activeSystem].rows.map((row) => (
+                  <div key={row.name} className="flex items-center gap-1.5">
+                    <span className="w-20 text-[11px] font-bold text-gray-700 truncate text-right pr-2 shrink-0">
+                      {row.name}
+                    </span>
+                    <div className="flex-1 flex gap-1">
+                      {row.colors.map((color, idx) => {
+                        const isSelected = inspectedColor.hex.toLowerCase() === color.toLowerCase();
+                        const shadeName = DESIGN_SYSTEMS[activeSystem].shades[idx];
+                        return (
+                          <button
+                            key={color + idx}
+                            onClick={() => handleSelectMatrixSwatch(color, row.name, shadeName)}
+                            className={`h-7 sm:h-8 flex-1 rounded transition-all cursor-pointer relative group ${
+                              isSelected ? "ring-2 ring-black scale-110 z-10 shadow-md" : "hover:scale-105"
+                            }`}
+                            style={{ backgroundColor: color }}
+                            title={`${row.name} ${shadeName}: ${color}`}
+                          />
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Live Color Inspector Bar */}

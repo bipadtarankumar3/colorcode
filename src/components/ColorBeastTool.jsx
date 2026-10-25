@@ -1,27 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Palette, 
-  Box, 
-  Zap, 
-  Camera, 
-  Eye, 
-  RotateCcw, 
-  Layers, 
-  Accessibility,
-  ShieldCheck,
-  Layout,
-  Search,
-  ChevronRight,
-  History
-} from "lucide-react";
-import { cn } from "../lib/utils";
 import dynamic from "next/dynamic";
 import { Header } from "./Header";
-import { ColorHistory } from "./ColorHistory";
 import Footer from "./Footer";
+import { HtmlColorPicker } from "./HtmlColorPicker";
+import { 
+  ShieldCheck,
+  Zap,
+  CheckCircle2,
+  Lock
+} from "lucide-react";
+import Link from "next/link";
 
 const GradientGenerator = dynamic(() => import("./tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
 const PaletteGenerator = dynamic(() => import("./tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
@@ -32,200 +22,116 @@ const ColorDetails = dynamic(() => import("./tools/ColorDetails").then(mod => mo
 const ShadesTints = dynamic(() => import("./tools/ShadesTints").then(mod => mod.ShadesTints), { ssr: false });
 const BlindnessSim = dynamic(() => import("./tools/BlindnessSim").then(mod => mod.BlindnessSim), { ssr: false });
 
-const STATIC_BUBBLES = [
-  { id: 1, left: '5%', width: '32px', height: '32px', delay: '0s', duration: '12s', opacity: 0.2 },
-  { id: 2, left: '15%', width: '18px', height: '18px', delay: '2s', duration: '18s', opacity: 0.1 },
-  { id: 3, left: '25%', width: '45px', height: '45px', delay: '5s', duration: '15s', opacity: 0.3 },
-  { id: 4, left: '35%', width: '22px', height: '22px', delay: '1s', duration: '20s', opacity: 0.15 },
-  { id: 5, left: '45%', width: '38px', height: '38px', delay: '8s', duration: '14s', opacity: 0.25 },
-  { id: 6, left: '55%', width: '12px', height: '12px', delay: '3s', duration: '25s', opacity: 0.1 },
-  { id: 7, left: '65%', width: '50px', height: '50px', delay: '6s', duration: '11s', opacity: 0.35 },
-  { id: 8, left: '75%', width: '28px', height: '28px', delay: '4s', duration: '17s', opacity: 0.2 },
-  { id: 9, left: '85%', width: '40px', height: '40px', delay: '9s', duration: '13s', opacity: 0.15 },
-  { id: 10, left: '95%', width: '20px', height: '20px', delay: '7s', duration: '19s', opacity: 0.25 },
-];
-
-const TOOL_SLUGS = {
-  gradient: "/tools/gradient-generator",
-  palette: "/tools/palette-generator",
-  tailwind: "/tools/tailwind-color-reference",
-  extractor: "/tools/color-extractor",
-  contrast: "/tools/contrast-checker",
-  details: "/tools/color-converter-details",
-  shades: "/tools/shades-tints-generator",
-  blindness: "/tools/color-blindness-simulator",
-};
-
 const TOOL_META = {
-  gradient: { title: "Gradient Generator", desc: "Build multi-stop linear and radial gradients with CSS & Tailwind export." },
-  palette: { title: "Harmonic Palette Generator", desc: "Craft balanced, analogous, triadic, and complementary palettes." },
-  tailwind: { title: "Tailwind Color Reference", desc: "Inspect and copy complete Tailwind CSS color shades with exact hex codes." },
-  extractor: { title: "Image Color Extractor", desc: "Extract dominant color swatches directly from images in your browser." },
-  contrast: { title: "WCAG Contrast Checker", desc: "Test foreground and background color combinations for accessibility compliance." },
-  details: { title: "Color Details & Converter", desc: "Convert between HEX, RGB, HSL, HSV, CMYK, and identify nearest named hues." },
-  shades: { title: "Shades & Tints Generator", desc: "Generate precise 10-step lighter tints and darker shades for any base color." },
-  blindness: { title: "Color Blindness Simulator", desc: "Simulate 8 visual deficiency modes to ensure accessible UI designs." },
+  picker: { 
+    title: "HTML Color Codes & Picker", 
+    desc: "Generate hex, RGB, HSL, and OKLCH color codes with live harmonic palettes, contrast check, and CSS export." 
+  },
+  gradient: { 
+    title: "CSS Gradient Generator", 
+    desc: "Create smooth multi-stop linear and radial gradients with custom angles and instant CSS code export." 
+  },
+  palette: { 
+    title: "Harmonic Palette Generator", 
+    desc: "Build harmonious color palettes using complementary, analogous, triadic, and monochromatic rules." 
+  },
+  contrast: { 
+    title: "WCAG Contrast Checker", 
+    desc: "Verify text and background combinations against official WCAG 2.1 AA and AAA legibility standards." 
+  },
+  extractor: { 
+    title: "Image Color Extractor", 
+    desc: "Extract dominant color palettes and exact hex codes directly from any photo inside your browser sandbox." 
+  },
+  shades: { 
+    title: "Color Chart: Shades & Tints", 
+    desc: "Generate 10-step lighter tints and darker shades for any base color with instant copy-to-clipboard." 
+  },
+  tailwind: { 
+    title: "Tailwind CSS Color Reference", 
+    desc: "Complete visual reference for all default Tailwind CSS color swatches and hex configurations." 
+  },
+  blindness: { 
+    title: "Color Blindness Simulator", 
+    desc: "Simulate 8 color vision deficiency modes to design accessible, inclusive web interfaces." 
+  },
 };
 
-export function ColorBeastTool({ initialTool = "gradient" }) {
-  const [activeTool, setActiveTool] = useState(initialTool);
-  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-
-  const handleToolSelect = (id) => {
-    setActiveTool(id);
-    if (typeof window !== "undefined" && TOOL_SLUGS[id]) {
-      window.history.pushState(null, "", TOOL_SLUGS[id]);
-    }
-  };
-
-  const tools = [
-    { id: "gradient", name: "Gradient", icon: Zap },
-    { id: "palette", name: "Palette", icon: Palette },
-    { id: "tailwind", name: "Tailwind", icon: Box },
-    { id: "extractor", name: "Extract", icon: Camera },
-    { id: "contrast", name: "Contrast", icon: Eye },
-    { id: "details", name: "Convert", icon: RotateCcw },
-    { id: "shades", name: "Variants", icon: Layers },
-    { id: "blindness", name: "Vision", icon: Accessibility },
-  ];
-
-  const currentMeta = TOOL_META[activeTool] || TOOL_META.gradient;
+export function ColorBeastTool({ initialTool = "picker" }) {
+  const currentMeta = TOOL_META[initialTool] || TOOL_META.picker;
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center relative">
-      {/* Premium Background Layer */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        {/* Animated Mesh Gradient - Base */}
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_-20%,#10b981,transparent_50%),radial-gradient(circle_at_0%_100%,#059669,transparent_50%),radial-gradient(circle_at_100%_100%,#34d399,transparent_50%)]" />
-        
-        {/* Modern Grid Layer */}
-        <div className="grid-bg" />
-
-        {/* Floating Blobs - Secondary Layer */}
-        <div className="blob blob-1 w-[800px] h-[800px] top-[-20%] left-[-10%] bg-emerald-600/5" />
-        <div className="blob blob-2 w-[600px] h-[600px] bottom-[-10%] right-[-10%] bg-teal-600/5" />
-        <div className="blob blob-3 w-[400px] h-[400px] top-[30%] left-[60%] bg-green-600/5" />
-        
-        {/* Glassmorphic Floating Bubbles */}
-        {STATIC_BUBBLES.map((b) => (
-          <div 
-            key={b.id}
-            className="bubble"
-            style={{ 
-              left: b.left,
-              width: b.width,
-              height: b.height,
-              animationDelay: b.delay,
-              animationDuration: b.duration,
-              opacity: b.opacity
-            }}
-          />
-        ))}
-        
-        {/* Noise Texture */}
-        <div className="noise" />
-      </div>
-
+    <div className="min-h-screen w-full flex flex-col bg-white text-gray-900">
+      {/* Single Unified Header with Icons & Green Highlights */}
       <Header />
-      
-      <main className="w-full max-w-7xl px-3 sm:px-4 md:px-6 py-6 md:py-8 space-y-6 md:space-y-10">
-        
-        {/* Tool Switcher Section - Direct Access */}
-        <section className="space-y-6">
-          <nav className="w-full overflow-x-auto no-scrollbar pb-2 flex justify-start sm:justify-center relative">
-            <div className="flex bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl p-1.5 rounded-[2rem] border border-slate-200/80 dark:border-slate-800 shadow-sm min-w-max items-center mx-auto px-2 gap-1">
-              {tools.map((tool) => (
-                <button
-                  key={tool.id}
-                  onClick={() => handleToolSelect(tool.id)}
-                  className={cn(
-                    "flex items-center gap-2 px-3.5 sm:px-5 py-2.5 rounded-[1.5rem] transition-all duration-300 font-bold text-xs sm:text-sm whitespace-nowrap cursor-pointer",
-                    activeTool === tool.id 
-                      ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 shadow-sm" 
-                      : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  )}
-                >
-                  <tool.icon className={cn(
-                    "w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300", 
-                    activeTool === tool.id ? "text-emerald-600 dark:text-emerald-400 scale-110" : "text-slate-400"
-                  )} />
-                  {tool.name}
-                </button>
-              ))}
-            </div>
-          </nav>
 
-          {/* Active Tool Headline */}
-          <div className="text-center max-w-xl mx-auto space-y-1 pt-2">
-            <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-slate-900 dark:text-white">
-              {currentMeta.title}
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
-              {currentMeta.desc}
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-12 flex-grow space-y-10">
+        
+        {/* Dynamic Tool Content without any double menu! */}
+        {initialTool === "picker" && <HtmlColorPicker />}
+
+        {initialTool !== "picker" && (
+          <div className="space-y-6">
+            <div className="text-left space-y-1">
+              <div className="text-xs font-bold text-emerald-600 uppercase tracking-widest">
+                Design Tool
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+                {currentMeta.title}
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {currentMeta.desc}
+              </p>
+            </div>
+
+            <div className="pt-2">
+              {initialTool === "gradient" && <GradientGenerator />}
+              {initialTool === "palette" && <PaletteGenerator />}
+              {initialTool === "contrast" && <ContrastChecker />}
+              {initialTool === "extractor" && <ImageExtractor />}
+              {initialTool === "shades" && <ShadesTints />}
+              {initialTool === "tailwind" && <TailwindReference />}
+              {initialTool === "blindness" && <BlindnessSim />}
+            </div>
+          </div>
+        )}
+
+        {/* Feature Highlights with fresh green touches */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-16 border-t border-gray-100">
+          <div className="p-5 rounded-xl border border-emerald-100 bg-emerald-50/30 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900">
+              <Lock className="w-4 h-4 text-emerald-600" />
+              100% Client-Side Privacy
+            </div>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Every color conversion and image extraction executes locally in your browser. No user files, color choices, or palette data are ever uploaded or tracked.
             </p>
           </div>
 
-          <div className="relative min-h-[400px] md:min-h-[550px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTool}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
-              >
-                {activeTool === "gradient" && <GradientGenerator />}
-                {activeTool === "palette" && <PaletteGenerator />}
-                {activeTool === "tailwind" && <TailwindReference />}
-                {activeTool === "extractor" && <ImageExtractor />}
-                {activeTool === "contrast" && <ContrastChecker />}
-                {activeTool === "details" && <ColorDetails />}
-                {activeTool === "shades" && <ShadesTints />}
-                {activeTool === "blindness" && <BlindnessSim />}
-              </motion.div>
-            </AnimatePresence>
+          <div className="p-5 rounded-xl border border-emerald-100 bg-emerald-50/30 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900">
+              <Zap className="w-4 h-4 text-emerald-600" />
+              Fast & Free For Everyone
+            </div>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              No registration, no paywalls, and no intrusive ads. Built as a fast, clean utility for modern web designers and frontend engineers.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-xl border border-emerald-100 bg-emerald-50/30 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              Standards Compliant
+            </div>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Compliant with W3C WCAG 2.1 contrast guidelines and modern CSS Color Module Level 4 specifications (including native OKLCH values).
+            </p>
           </div>
         </section>
 
-        {/* Footer Details - Minimal & SEO Friendly */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-black/5">
-           <div className="space-y-2">
-              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4" />
-                Privacy First
-              </h3>
-              <p className="text-xs opacity-40 leading-relaxed">All processing is done locally in your browser. No data is sent to our servers.</p>
-           </div>
-           <div className="space-y-2">
-              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
-                <Layout className="w-4 h-4" />
-                Design Systems
-              </h3>
-              <p className="text-xs opacity-40 leading-relaxed">Built for professionals managing complex color systems and accessibility.</p>
-           </div>
-           <div className="space-y-2">
-              <h3 className="text-sm font-black uppercase tracking-widest opacity-60 flex items-center gap-2">
-                <Search className="w-4 h-4" />
-                SEO Optimized
-              </h3>
-              <p className="text-xs opacity-40 leading-relaxed">Lightweight architecture ensures maximum speed and search engine visibility.</p>
-           </div>
-        </section>
       </main>
 
       <Footer />
-      {/* Floating History Button */}
-      <button 
-        suppressHydrationWarning
-        onClick={() => setIsHistoryOpen(true)}
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-black text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group cursor-pointer"
-      >
-        <History className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" />
-      </button>
-
-      {/* Sidebars */}
-      <ColorHistory isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />
     </div>
   );
 }

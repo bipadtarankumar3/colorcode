@@ -1,10 +1,10 @@
 import { Header } from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { ShieldCheck, BookOpen, Clock, ArrowLeft } from "lucide-react";
+import { BookOpen, Clock, ArrowLeft, Check, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "WCAG 2.1 Color Contrast Standards & ADA Compliance",
+  title: "WCAG 2.1 Color Contrast Standards & ADA Compliance | Color Codes",
   description: "A complete guide to Web Content Accessibility Guidelines (WCAG) 2.1 color contrast ratios, AA vs AAA compliance levels, and how to design accessible UIs.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/guides/wcag-contrast-standards",
@@ -13,88 +13,78 @@ export const metadata = {
 
 export default function WcagGuide() {
   return (
-    <div className="min-h-screen flex flex-col relative text-slate-800 dark:text-slate-100">
-      {/* Background layer */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_0%,#3b82f6,transparent_50%)]" />
-        <div className="grid-bg opacity-30" />
-      </div>
-
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
 
-      <main className="w-full max-w-4xl mx-auto px-6 py-12 flex-grow space-y-8">
+      <main className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-10">
         <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-600 hover:text-emerald-800 transition-colors uppercase"
+          href="/guides" 
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors"
         >
-          <ArrowLeft size={16} /> Back to Tools
+          <ArrowLeft size={14} /> Back to Guides
         </Link>
 
-        <article className="space-y-6">
-          <header className="space-y-4">
-            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-wider border border-emerald-200 bg-emerald-50 text-emerald-600 uppercase">
-              Web Accessibility
-            </span>
-            <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-              Understanding WCAG 2.1 Color Contrast Standards
-            </h1>
-            <div className="flex items-center gap-4 text-xs opacity-50 font-bold uppercase">
-              <span className="flex items-center gap-1"><BookOpen size={14} /> 6 Min Read</span>
-              <span>•</span>
-              <span className="flex items-center gap-1"><Clock size={14} /> Published 2026</span>
-            </div>
-          </header>
+        <header className="space-y-4 border-b border-gray-100 pb-8">
+          <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            Web Accessibility
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-gray-900">
+            Understanding WCAG 2.1 Color Contrast Standards
+          </h1>
+          <div className="flex items-center gap-3 text-xs text-gray-500">
+            <span className="flex items-center gap-1"><BookOpen size={13} /> 6 Min Read</span>
+            <span>•</span>
+            <span className="flex items-center gap-1"><Clock size={13} /> Updated for 2026</span>
+          </div>
+        </header>
 
-          <div className="glass p-8 rounded-3xl border border-white/20 dark:border-white/10 space-y-6 leading-relaxed">
-            <h2 className="text-xl font-bold uppercase text-emerald-600">Why Color Contrast Matters</h2>
+        <article className="space-y-8 text-sm sm:text-base text-gray-700 leading-relaxed">
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-gray-900">Why Color Contrast Matters</h2>
             <p>
               Digital accessibility is a fundamental requirement for modern software systems. Color contrast standards ensure that text elements are readable by everyone, including individuals with low vision, color blindness, or aging eyes. Meeting these requirements is a key pillar of ADA (Americans with Disabilities Act) and section 508 legal compliance.
             </p>
+          </section>
 
-            <h2 className="text-xl font-bold uppercase text-emerald-600">Compliance Levels: AA vs AAA</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-5 rounded-2xl bg-white/40 border border-white/30 dark:bg-slate-800/40 space-y-2">
-                <h3 className="font-extrabold text-sm text-emerald-700 dark:text-emerald-400 uppercase">Level AA (Standard)</h3>
-                <p className="text-xs opacity-75">
-                  The minimum legal requirement for most commercial and public websites. Requires a ratio of **4.5:1** for standard text and **3:1** for large text (above 18pt or bold 14pt).
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-900">Compliance Levels: AA vs AAA</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 space-y-2">
+                <h3 className="font-bold text-sm text-gray-900">Level AA (Standard)</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  The minimum legal requirement for most commercial and public websites. Requires a ratio of <strong>4.5:1</strong> for standard text and <strong>3:1</strong> for large text (above 18pt or bold 14pt).
                 </p>
               </div>
-              <div className="p-5 rounded-2xl bg-white/40 border border-white/30 dark:bg-slate-800/40 space-y-2">
-                <h3 className="font-extrabold text-sm text-emerald-700 dark:text-emerald-400 uppercase">Level AAA (Enhanced)</h3>
-                <p className="text-xs opacity-75">
-                  The gold standard for accessibility, frequently required for government, educational, or highly inclusive systems. Requires **7:1** for standard text and **4.5:1** for large text.
+
+              <div className="p-5 rounded-xl border border-gray-200 bg-gray-50/50 space-y-2">
+                <h3 className="font-bold text-sm text-gray-900">Level AAA (Enhanced)</h3>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  The gold standard for high-legibility systems (e.g. government, healthcare, or long-form reading). Requires <strong>7:1</strong> for standard text and <strong>4.5:1</strong> for large text.
                 </p>
               </div>
             </div>
+          </section>
 
-            <h2 className="text-xl font-bold uppercase text-emerald-600">Exceptions to the Rules</h2>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-gray-900">Non-Text Contrast</h2>
             <p>
-              Not all design elements require contrast ratios. Excluded items include:
+              WCAG 2.1 introduced rule 1.4.11 for Non-Text Contrast. Visual information required to identify user interface components (such as form field borders, tab indicators, or radio button outlines) must have at least a <strong>3:1</strong> contrast ratio against adjacent background colors.
             </p>
-            <ul className="list-disc list-inside space-y-2 pl-2 text-xs opacity-80">
-              <li>Logos, company wordmarks, or product brands.</li>
-              <li>Decorative elements or text that is purely graphical.</li>
-              <li>Disabled buttons or form components that are inactive.</li>
-            </ul>
+          </section>
 
-            <h2 className="text-xl font-bold uppercase text-emerald-600">How to Fix Contrast Issues</h2>
-            <p>
-              If your current combination fails, you can resolve it by:
-            </p>
-            <ol className="list-decimal list-inside space-y-2 pl-2 text-xs opacity-80">
-              <li>Slightly darkening your text color if using a light background.</li>
-              <li>Lightening your text color if using a dark background.</li>
-              <li>Increasing the font weight or size to shift into the &quot;Large Text&quot; category which has lower ratio thresholds.</li>
-            </ol>
-
-            <div className="pt-6 border-t border-black/5 flex flex-col items-center">
-              <Link 
-                href="/tools/contrast-checker" 
-                className="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs tracking-widest uppercase transition-all shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
-              >
-                Launch Contrast Checker →
-              </Link>
+          <div className="p-6 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h4 className="font-bold text-sm text-gray-900">Test Your Colors Now</h4>
+              <p className="text-xs text-gray-600">
+                Use our automated contrast checker to test your palette combinations with real-time pass/fail indicators.
+              </p>
             </div>
+            <Link
+              href="/tools/contrast-checker"
+              className="px-4 py-2 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-black transition-colors whitespace-nowrap"
+            >
+              Open Contrast Checker
+            </Link>
           </div>
         </article>
       </main>

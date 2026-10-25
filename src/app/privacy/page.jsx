@@ -1,42 +1,68 @@
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+export const metadata = {
+  title: "Privacy Policy | Color Codes",
+  description: "Privacy policy for Color Codes: 100% client-side execution, zero tracking, and no server data storage.",
+};
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#f8f9ff] dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-100 selection:text-emerald-900 relative overflow-hidden flex flex-col items-center w-full">
-      {/* Background blobs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-emerald-400/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-teal-400/10 blur-[120px] rounded-full" />
-      </div>
-
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
 
-      <main className="w-full max-w-4xl px-4 sm:px-6 md:px-10 py-16 space-y-12 relative z-10 flex-grow">
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase">Privacy Policy</h1>
-          <p className="text-lg opacity-40 font-medium">No Data Collection. Pure Privacy.</p>
-        </div>
+      <main className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-10">
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors"
+        >
+          <ArrowLeft size={14} /> Back to Home
+        </Link>
 
-        <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl p-6 md:p-12 rounded-[2.5rem] border border-white/60 dark:border-white/10 shadow-2xl space-y-8 text-slate-700 dark:text-slate-350 leading-relaxed font-sans font-medium">
-          <section className="space-y-4">
-            <h2 className="text-xl font-black uppercase tracking-widest text-slate-900 dark:text-white">1. Local-First Philosophy</h2>
-            <p>At Color Code, we believe your design data belongs to you. All color processing, image extraction, and palette generation are performed locally within your browser using JavaScript. No color data is ever sent to our servers.</p>
+        <header className="space-y-2 border-b border-gray-100 pb-6">
+          <div className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+            Legal & Privacy
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+            Privacy Policy
+          </h1>
+          <p className="text-sm text-gray-500">
+            Last updated: October 2026
+          </p>
+        </header>
+
+        <div className="space-y-8 text-sm sm:text-base text-gray-700 leading-relaxed">
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-gray-900">1. Client-Side Processing</h2>
+            <p>
+              At Color Codes, we believe your design workflows and assets belong solely to you. All color conversions, image color extractions, and palette simulations execute locally within your browser sandbox using native client-side JavaScript. No images or palette data are ever transmitted to or stored on our servers.
+            </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl font-black uppercase tracking-widest text-slate-900 dark:text-white">2. Information We Don&apos;t Collect</h2>
-            <p>We do not collect personal information, cookies, or tracking data. We don&apos;t use analytics scripts that compromise your privacy or slow down your workflow.</p>
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-gray-900">2. Information We Do Not Collect</h2>
+            <p>
+              We do not require account registration, usernames, or passwords. We do not sell user data, nor do we employ cross-site marketing trackers or invasive profiling cookies.
+            </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl font-black uppercase tracking-widest text-slate-900 dark:text-white">3. Local Storage</h2>
-            <p>We use your browser&apos;s local storage solely to provide features like Color History. This data remains on your device and can be cleared at any time via the sidebar controls.</p>
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-gray-900">3. Local Storage</h2>
+            <p>
+              When using features like local color history, values are persisted solely in your browser's private <code className="text-xs bg-gray-100 px-1 py-0.5 rounded font-mono">localStorage</code>. This data never leaves your device and can be cleared through your browser settings at any time.
+            </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl font-black uppercase tracking-widest text-slate-900 dark:text-white">4. Third-Party Links</h2>
-            <p>While we may link to documentation or community resources (like GitHub or Figma), those sites have their own privacy policies which we encourage you to review.</p>
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-gray-900">4. Contacting Us</h2>
+            <p>
+              If you have any questions or feedback regarding our privacy standards, you can contact us directly at{" "}
+              <a href="mailto:support@revoxera.com" className="text-gray-900 font-medium underline underline-offset-2 hover:text-rose-600">
+                support@revoxera.com
+              </a>.
+            </p>
           </section>
         </div>
       </main>

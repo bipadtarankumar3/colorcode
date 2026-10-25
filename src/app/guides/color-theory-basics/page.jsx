@@ -1,11 +1,11 @@
 import { Header } from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { ShieldCheck, BookOpen, Clock, ArrowLeft } from "lucide-react";
+import { BookOpen, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Color Theory & Harmonic Palettes for UI Designers",
-  description: "Learn the core fundamentals of color theory, monochromatic vs triadic harmonies, analogous palettes, and how to construct premium, harmonic visual design systems.",
+  title: "Color Theory & Harmonic Palettes for UI Designers | Color Codes",
+  description: "Learn the core fundamentals of color theory, monochromatic vs triadic harmonies, analogous palettes, and how to construct harmonic visual design systems.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/guides/color-theory-basics",
   },
@@ -13,82 +13,78 @@ export const metadata = {
 
 export default function ColorTheoryGuide() {
   return (
-    <div className="min-h-screen flex flex-col relative text-slate-800 dark:text-slate-100">
-      {/* Background layer */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_0%,#7c3aed,transparent_50%)]" />
-        <div className="grid-bg opacity-30" />
-      </div>
-
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
 
-      <main className="w-full max-w-4xl mx-auto px-6 py-12 flex-grow space-y-8">
+      <main className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-10">
         <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-emerald-600 hover:text-emerald-800 transition-colors uppercase"
+          href="/guides" 
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors"
         >
-          <ArrowLeft size={16} /> Back to Tools
+          <ArrowLeft size={14} /> Back to Guides
         </Link>
 
-        <article className="space-y-6">
-          <header className="space-y-4">
-            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-wider border border-emerald-200 bg-emerald-50 text-emerald-600 uppercase">
-              UI/UX Design Systems
-            </span>
-            <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-              Introduction to Color Theory & Harmonies
-            </h1>
-            <div className="flex items-center gap-4 text-xs opacity-50 font-bold uppercase">
-              <span className="flex items-center gap-1"><BookOpen size={14} /> 5 Min Read</span>
-              <span>•</span>
-              <span className="flex items-center gap-1"><Clock size={14} /> Published 2026</span>
-            </div>
-          </header>
+        <header className="space-y-4 border-b border-gray-100 pb-8">
+          <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            UI/UX Design Systems
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-gray-900">
+            Introduction to Color Theory & Harmonies
+          </h1>
+          <div className="flex items-center gap-3 text-xs text-gray-500">
+            <span className="flex items-center gap-1"><BookOpen size={13} /> 5 Min Read</span>
+            <span>•</span>
+            <span className="flex items-center gap-1"><Clock size={13} /> Updated for 2026</span>
+          </div>
+        </header>
 
-          <div className="glass p-8 rounded-3xl border border-white/20 dark:border-white/10 space-y-6 leading-relaxed">
-            <h2 className="text-xl font-bold uppercase text-emerald-600">The Power of Color Harmonies</h2>
+        <article className="space-y-8 text-sm sm:text-base text-gray-700 leading-relaxed">
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-gray-900">The Power of Color Harmonies</h2>
             <p>
               In digital visual design, selecting colors is more than an aesthetic preference. Harmonious palettes rely on geometry, mathematical relations on the color wheel, and color psychology to evoke positive emotions and highlight product hierarchy.
             </p>
+          </section>
 
-            <h2 className="5 Core Harmony Types">5 Core Harmony Types</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-white/40 border border-white/20 dark:bg-slate-800/40">
-                <h3 className="font-extrabold text-xs text-emerald-700 dark:text-emerald-400 uppercase">Complementary</h3>
-                <p className="text-xs opacity-75 mt-1">Colors directly opposite each other on the color wheel. Delivers maximum contrast and vibrant focal points.</p>
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-900">5 Core Harmony Types</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-1">
+                <h3 className="font-bold text-xs text-gray-900">Complementary</h3>
+                <p className="text-xs text-gray-600">Colors directly opposite each other on the color wheel (180°). Delivers maximum contrast and vibrant focal points.</p>
               </div>
-              <div className="p-4 rounded-xl bg-white/40 border border-white/20 dark:bg-slate-800/40">
-                <h3 className="font-extrabold text-xs text-emerald-700 dark:text-emerald-400 uppercase">Analogous</h3>
-                <p className="text-xs opacity-75 mt-1">Three adjacent colors. Creates a serene, uniform, natural design language.</p>
+              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-1">
+                <h3 className="font-bold text-xs text-gray-900">Analogous</h3>
+                <p className="text-xs text-gray-600">Adjacent colors on the wheel (±30°). Creates a serene, unified feeling common in nature and photography.</p>
               </div>
-              <div className="p-4 rounded-xl bg-white/40 border border-white/20 dark:bg-slate-800/40">
-                <h3 className="font-extrabold text-xs text-emerald-700 dark:text-emerald-400 uppercase">Triadic</h3>
-                <p className="text-xs opacity-75 mt-1">Three colors spaced evenly on the wheel. Offers vibrant, balanced color sets.</p>
+              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-1">
+                <h3 className="font-bold text-xs text-gray-900">Triadic</h3>
+                <p className="text-xs text-gray-600">Three colors spaced evenly at 120° angles. Offers vibrant visual contrast while retaining visual stability.</p>
               </div>
-              <div className="p-4 rounded-xl bg-white/40 border border-white/20 dark:bg-slate-800/40">
-                <h3 className="font-extrabold text-xs text-emerald-700 dark:text-emerald-400 uppercase">Monochromatic</h3>
-                <p className="text-xs opacity-75 mt-1">Variations in shade, tint, and saturation of a single base color. Ideal for clean layout consistency.</p>
+              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-1">
+                <h3 className="font-bold text-xs text-gray-900">Tetradic (Double Complementary)</h3>
+                <p className="text-xs text-gray-600">Four colors arranged into two complementary pairs. Rich and varied, ideal when one color dominates.</p>
+              </div>
+              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-1 sm:col-span-2">
+                <h3 className="font-bold text-xs text-gray-900">Monochromatic</h3>
+                <p className="text-xs text-gray-600">Variations in lightness and saturation of a single hue. Clean, sophisticated, and guaranteed to harmonize effortlessly.</p>
               </div>
             </div>
+          </section>
 
-            <h2 className="text-xl font-bold uppercase text-emerald-600">Building a Design System Palette</h2>
-            <p>
-              When engineering design tokens, follow the **60-30-10 Rule**:
-            </p>
-            <ul className="list-disc list-inside space-y-2 pl-2 text-xs opacity-80">
-              <li>**60% dominant base**: Typically clean white, off-black, or neutral grey backgrounds.</li>
-              <li>**30% secondary base**: Primary brand layout colors, borders, and main body text.</li>
-              <li>**10% accent points**: Vibrant complementary colors used exclusively for primary action buttons (CTAs), warnings, or features.</li>
-            </ul>
-
-            <div className="pt-6 border-t border-black/5 flex flex-col items-center">
-              <Link 
-                href="/tools/palette-generator" 
-                className="px-6 py-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 font-black text-xs tracking-widest uppercase transition-all shadow-sm hover:-translate-y-0.5"
-              >
-                Launch Palette Builder →
-              </Link>
+          <div className="p-6 rounded-xl border border-gray-200 bg-gray-50 flex items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h4 className="font-bold text-sm text-gray-900">Try Generating Harmonies</h4>
+              <p className="text-xs text-gray-600">
+                Use our interactive Palette Builder to generate and export custom color harmonies instantly.
+              </p>
             </div>
+            <Link
+              href="/tools/palette-generator"
+              className="px-4 py-2 bg-gray-900 text-white rounded-lg text-xs font-semibold hover:bg-black transition-colors whitespace-nowrap"
+            >
+              Open Palette Builder
+            </Link>
           </div>
         </article>
       </main>

@@ -3,12 +3,12 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   title: {
-    default: "Color Code | Ultimate Professional Color Utility Suite",
-    template: "%s | Color Code",
+    default: "HTML Color Codes | Hex, RGB, HSL & OKLCH Color Tools",
+    template: "%s | Color Codes",
   },
-  description: "Color Code is the #1 tool for visual designers. Generate gradients, harmonic palettes, extract colors from images, check WCAG contrast, and simulate color blindness. Built for high-performance design systems.",
-  keywords: ["color generator", "gradient builder", "palette generator", "contrast checker", "tailwind colors", "color blindness simulator", "design tools", "color converter"],
-  authors: [{ name: "Color Code Lab" }],
+  description: "Get HTML color codes, Hex color codes, RGB, HSL and OKLCH values with our color pickers, color wheel, color chart and HTML color names.",
+  keywords: ["color codes", "html color codes", "hex color codes", "color picker", "rgb color", "hsl color", "oklch color", "color chart", "palette generator"],
+  authors: [{ name: "Revoxera Studio" }],
   metadataBase: new URL("https://colorcode.revoxera.com"),
   alternates: {
     canonical: "https://colorcode.revoxera.com/",

@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/tailwind-color-reference",
   },
   openGraph: {
-    title: "Tailwind CSS Color Reference | Color Codes by Revoxera",
+    title: "Tailwind CSS Color Reference | Revoxera Color",
     description: "Complete visual reference for all default Tailwind CSS color swatches and hex configurations.",
     url: "https://colorcode.revoxera.com/tools/tailwind-color-reference",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Tailwind CSS Color Reference" }],
     locale: "en_US",
     type: "website",

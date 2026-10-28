@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/color-extractor",
   },
   openGraph: {
-    title: "Image Color Extractor | Color Codes by Revoxera",
+    title: "Image Color Extractor | Revoxera Color",
     description: "Extract dominant color palettes and exact hex codes directly from any photo inside your browser sandbox.",
     url: "https://colorcode.revoxera.com/tools/color-extractor",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Image Color Extractor" }],
     locale: "en_US",
     type: "website",

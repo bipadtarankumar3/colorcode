@@ -1,6 +1,6 @@
-# Color Codes by Revoxera
+# Revoxera Color
 
-> Color Codes (https://colorcode.revoxera.com) is a high-performance, privacy-first color toolkit and reference directory for web developers, designers, and software engineers. Built with client-side zero-upload processing, it provides color conversion across HEX, RGB, HSL, and OKLCH, WCAG 2.1 accessibility auditing, interactive harmonic palette generation, and comprehensive design system charts.
+> Revoxera Color (https://colorcode.revoxera.com) is a high-performance, privacy-first color toolkit and reference directory for web developers, designers, and software engineers. Built with client-side zero-upload processing, it provides color conversion across HEX, RGB, HSL, and OKLCH, WCAG 2.1 accessibility auditing, interactive harmonic palette generation, and comprehensive design system charts.
 
 ## Primary Tools & Endpoints
 

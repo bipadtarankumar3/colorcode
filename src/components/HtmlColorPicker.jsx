@@ -471,18 +471,18 @@ export function HtmlColorPicker() {
       <div className="text-left space-y-2">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-[11px] font-bold text-emerald-800 uppercase tracking-wider">
           <Sparkles className="w-3 h-3 text-emerald-600" />
-          Interactive Color Workbench
+          Revoxera Color · Next-Gen Color Studio
         </div>
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
-            HTML Color Codes
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            Smart Color Picker & Palette Generator
           </h1>
           <div className="text-xs text-gray-500 font-medium">
             Shortcuts: <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">Space</kbd> Random · <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">C</kbd> Copy · <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">E</kbd> Export
           </div>
         </div>
-        <p className="text-sm sm:text-base text-gray-600 max-w-2xl leading-relaxed">
-          Get HTML color codes, Hex color codes, RGB, HSL and OKLCH values with our color pickers, color wheel, color chart and HTML color names. Let's go!
+        <p className="text-sm sm:text-base text-gray-600 max-w-3xl leading-relaxed">
+          The all-in-one color suite engineered for web designers and frontend developers. Generate harmonious palettes, convert HEX, RGB, HSL and modern OKLCH color codes, audit WCAG contrast, and export clean Tailwind CSS design tokens.
         </p>
       </div>
 

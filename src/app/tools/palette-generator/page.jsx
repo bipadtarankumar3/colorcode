@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/palette-generator",
   },
   openGraph: {
-    title: "Harmonic Color Palette Generator | Color Codes by Revoxera",
+    title: "Harmonic Color Palette Generator | Revoxera Color",
     description: "Generate complementary, split-complementary, triadic, analogous, and monochromatic color palettes instantly.",
     url: "https://colorcode.revoxera.com/tools/palette-generator",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Harmonic Palette Generator" }],
     locale: "en_US",
     type: "website",

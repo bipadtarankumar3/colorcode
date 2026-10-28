@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/gradient-generator",
   },
   openGraph: {
-    title: "CSS Gradient Generator | Color Codes by Revoxera",
+    title: "CSS Gradient Generator | Revoxera Color",
     description: "Create beautiful, smooth, multi-color CSS gradients instantly. Export code as raw CSS, linear-gradient declarations, or Tailwind CSS classes.",
     url: "https://colorcode.revoxera.com/tools/gradient-generator",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "CSS Gradient Generator" }],
     locale: "en_US",
     type: "website",

@@ -23,10 +23,10 @@ export async function generateMetadata({ params }) {
       canonical: `https://colorcode.revoxera.com/blog/${slug}`,
     },
     openGraph: {
-      title: `${post.title} | Color Codes by Revoxera`,
+      title: `${post.title} | Revoxera Color`,
       description: post.summary,
       url: `https://colorcode.revoxera.com/blog/${slug}`,
-      siteName: "Color Codes by Revoxera",
+      siteName: "Revoxera Color",
       images: [{ url: "/logo.png", width: 1200, height: 630, alt: post.title }],
       type: "article",
       publishedTime: post.date,

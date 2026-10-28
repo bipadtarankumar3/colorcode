@@ -71,7 +71,7 @@ export default function Footer() {
                 About
               </span>
               <p className="text-xs text-gray-600 leading-relaxed font-normal">
-                We built Color Codes because we believe tools for design should be well designed themselves. If you like the site or have a suggestion,{" "}
+                We built Revoxera Color because we believe tools for design should be well designed themselves. If you like the site or have a suggestion,{" "}
                 <Link href="/contact" className="text-gray-900 underline underline-offset-2 hover:text-rose-600">
                   drop us a line
                 </Link>

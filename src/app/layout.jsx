@@ -3,23 +3,21 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   title: {
-    default: "HTML Color Codes | Hex, RGB, HSL & OKLCH Color Tools & Generator",
-    template: "%s | Color Codes by Revoxera",
+    default: "Revoxera Color — Smart Color Picker & Palette Generator for Web Designers",
+    template: "%s | Revoxera Color",
   },
-  description: "Free online HTML color picker, hex color codes, RGB, HSL, and OKLCH converters. Explore dynamic color wheels, WCAG contrast checkers, image color extractors, and design system charts.",
+  description: "Revoxera Color is the smart color picker, palette generator, and design system suite for web designers and developers. Real-time OKLCH, HEX, RGB conversion, WCAG contrast auditing, live UI preview, and instant Tailwind tokens.",
   keywords: [
+    "revoxera color",
+    "smart color picker",
+    "color palette generator",
+    "web design color tools",
     "html color codes",
     "hex color codes",
-    "color picker",
-    "rgb to hex",
-    "hsl color picker",
     "oklch color converter",
     "wcag contrast checker",
-    "color wheel online",
-    "extract color from image",
     "tailwind colors",
     "color blindness simulator",
-    "css color names",
     "design system palettes"
   ],
   authors: [{ name: "Revoxera Studio", url: "https://colorcode.revoxera.com" }],
@@ -41,16 +39,16 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "HTML Color Codes & Hex Tools | Color Code by Revoxera",
-    description: "The complete, high-performance color suite: 2D Color Picker, Harmonic Color Wheel, Image Palette Extractor, and WCAG Contrast Checker.",
+    title: "Revoxera Color — Smart Color Picker & Palette Generator for Web Designers",
+    description: "The modern, high-performance color suite: 2D Color Picker, Harmonic Color Wheel, Image Palette Extractor, and WCAG Contrast Checker.",
     url: "https://colorcode.revoxera.com",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Color Codes Suite by Revoxera",
+        alt: "Revoxera Color — Smart Color Picker & Palette Suite",
       },
     ],
     locale: "en_US",
@@ -58,7 +56,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HTML Color Codes & Hex Tools | Color Code by Revoxera",
+    title: "Revoxera Color — Smart Color Picker & Palette Generator for Web Designers",
     description: "The complete color suite: 2D Picker, Dynamic Wheel, Image Extractor, and WCAG Contrast Checker.",
     images: ["/logo.png"],
   },
@@ -84,7 +82,7 @@ const organizationSchema = {
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Color Codes",
+  "name": "Revoxera Color",
   "operatingSystem": "All modern browsers (Chrome, Safari, Firefox, Edge)",
   "applicationCategory": "DesignApplication",
   "applicationSubCategory": "Developer & Graphic Design Utilities",
@@ -111,7 +109,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "url": "https://colorcode.revoxera.com",
-  "name": "Color Codes by Revoxera",
+  "name": "Revoxera Color",
   "description": "The definitive online color toolbox for developers, UI/UX designers, and digital artists.",
   "potentialAction": {
     "@type": "SearchAction",

@@ -16,10 +16,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/contrast-checker",
   },
   openGraph: {
-    title: "WCAG Color Contrast Checker | Color Codes by Revoxera",
+    title: "WCAG Color Contrast Checker | Revoxera Color",
     description: "Verify text and background combinations against official WCAG 2.1 AA & AAA accessibility standards with real-time luminance calculation.",
     url: "https://colorcode.revoxera.com/tools/contrast-checker",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "WCAG Color Contrast Checker" }],
     locale: "en_US",
     type: "website",

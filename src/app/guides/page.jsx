@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BLOG_POSTS } from "../../lib/blogData";
 
 export const metadata = {
-  title: "Design & Accessibility Guides | Color Codes by Revoxera",
+  title: "Design & Accessibility Guides | Revoxera Color",
   description: "Comprehensive guides on color theory, harmonic palettes, WCAG 2.1 accessibility standards, and design system color tokens.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/guides",
@@ -14,7 +14,7 @@ export const metadata = {
     title: "Design & Accessibility Guides | Color Codes",
     description: "Comprehensive guides on color theory, harmonic palettes, WCAG 2.1 accessibility standards, and design system color tokens.",
     url: "https://colorcode.revoxera.com/guides",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Color Guides" }],
     locale: "en_US",
     type: "website",

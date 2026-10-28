@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/color-converter-details",
   },
   openGraph: {
-    title: "Advanced Color Space Converter | Color Codes by Revoxera",
+    title: "Advanced Color Space Converter | Revoxera Color",
     description: "Convert color formats between HEX, RGB, RGBA, HSL, HSLA, CMYK, and HSV. Get full statistics, details, and color definitions in-browser.",
     url: "https://colorcode.revoxera.com/tools/color-converter-details",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Advanced Color Converter" }],
     locale: "en_US",
   },

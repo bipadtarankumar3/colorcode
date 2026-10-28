@@ -333,10 +333,10 @@ export function Header() {
           </div>
           <div className="flex flex-col">
             <span className="font-extrabold text-base text-gray-900 tracking-tight leading-none group-hover:text-emerald-700 transition-colors">
-              Color Codes
+              Revoxera Color
             </span>
             <span className="text-[9px] font-bold text-emerald-600 tracking-wider uppercase mt-1">
-              BY REVOXERA
+              SMART COLOR STUDIO
             </span>
           </div>
         </Link>

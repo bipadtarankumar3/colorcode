@@ -16,10 +16,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/color-blindness-simulator",
   },
   openGraph: {
-    title: "Color Blindness Vision Simulator | Color Codes by Revoxera",
+    title: "Color Blindness Vision Simulator | Revoxera Color",
     description: "Simulate 8 color vision deficiency modes to design accessible, inclusive web interfaces.",
     url: "https://colorcode.revoxera.com/tools/color-blindness-simulator",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Color Blindness Simulator" }],
     locale: "en_US",
     type: "website",

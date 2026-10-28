@@ -5,16 +5,16 @@ import { BLOG_POSTS } from "../../lib/blogData";
 import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 
 export const metadata = {
-  title: "Blog & Educational Guides | Color Codes by Revoxera",
+  title: "Blog & Educational Guides | Revoxera Color",
   description: "Practical guides and articles on color theory, digital accessibility, WCAG contrast standards, and modern CSS color spaces.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/blog",
   },
   openGraph: {
-    title: "Color & Web Design Blog | Color Codes by Revoxera",
+    title: "Color & Web Design Blog | Revoxera Color",
     description: "Practical guides on color theory, digital accessibility, WCAG contrast standards, and modern CSS color spaces.",
     url: "https://colorcode.revoxera.com/blog",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Color Codes Blog" }],
     locale: "en_US",
     type: "website",

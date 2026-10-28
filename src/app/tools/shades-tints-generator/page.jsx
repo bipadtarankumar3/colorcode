@@ -15,10 +15,10 @@ export const metadata = {
     canonical: "https://colorcode.revoxera.com/tools/shades-tints-generator",
   },
   openGraph: {
-    title: "Shades & Tints Generator | Color Codes by Revoxera",
+    title: "Shades & Tints Generator | Revoxera Color",
     description: "Generate 10-step lighter tints and darker shades for any base color with instant copy-to-clipboard.",
     url: "https://colorcode.revoxera.com/tools/shades-tints-generator",
-    siteName: "Color Codes by Revoxera",
+    siteName: "Revoxera Color",
     images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Shades and Tints Generator" }],
     locale: "en_US",
     type: "website",

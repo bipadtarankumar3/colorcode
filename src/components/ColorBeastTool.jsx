@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
 import { Header } from "./Header";
 import Footer from "./Footer";
 import { HtmlColorPicker } from "./HtmlColorPicker";
@@ -14,18 +13,18 @@ import {
 import Link from "next/link";
 import { ToolSeoContent } from "./seo/ToolSeoContent";
 
-const GradientGenerator = dynamic(() => import("./tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
-const PaletteGenerator = dynamic(() => import("./tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
-const TailwindReference = dynamic(() => import("./tools/TailwindReference").then(mod => mod.TailwindReference), { ssr: false });
-const ImageExtractor = dynamic(() => import("./tools/ImageExtractor").then(mod => mod.ImageExtractor), { ssr: false });
-const ContrastChecker = dynamic(() => import("./tools/ContrastChecker").then(mod => mod.ContrastChecker), { ssr: false });
-const ColorDetails = dynamic(() => import("./tools/ColorDetails").then(mod => mod.ColorDetails), { ssr: false });
-const ShadesTints = dynamic(() => import("./tools/ShadesTints").then(mod => mod.ShadesTints), { ssr: false });
-const BlindnessSim = dynamic(() => import("./tools/BlindnessSim").then(mod => mod.BlindnessSim), { ssr: false });
+import { GradientGenerator } from "./tools/GradientGenerator";
+import { PaletteGenerator } from "./tools/PaletteGenerator";
+import { TailwindReference } from "./tools/TailwindReference";
+import { ImageExtractor } from "./tools/ImageExtractor";
+import { ContrastChecker } from "./tools/ContrastChecker";
+import { ColorDetails } from "./tools/ColorDetails";
+import { ShadesTints } from "./tools/ShadesTints";
+import { BlindnessSim } from "./tools/BlindnessSim";
 
 const TOOL_META = {
   picker: { 
-    title: "HTML Color Codes & Picker", 
+    title: "Smart Color Picker & Palette Generator", 
     desc: "Generate hex, RGB, HSL, and OKLCH color codes with live harmonic palettes, contrast check, and CSS export." 
   },
   gradient: { 

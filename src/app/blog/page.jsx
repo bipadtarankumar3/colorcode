@@ -5,26 +5,54 @@ import { BLOG_POSTS } from "../../lib/blogData";
 import { ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
 
 export const metadata = {
-  title: "Blog & Guides | Color Codes",
+  title: "Blog & Educational Guides | Color Codes by Revoxera",
   description: "Practical guides and articles on color theory, digital accessibility, WCAG contrast standards, and modern CSS color spaces.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/blog",
   },
+  openGraph: {
+    title: "Color & Web Design Blog | Color Codes by Revoxera",
+    description: "Practical guides on color theory, digital accessibility, WCAG contrast standards, and modern CSS color spaces.",
+    url: "https://colorcode.revoxera.com/blog",
+    siteName: "Color Codes by Revoxera",
+    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Color Codes Blog" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Color & Web Design Blog | Color Codes",
+    description: "Practical guides on color theory, digital accessibility, WCAG contrast standards, and modern CSS color spaces.",
+    images: ["/logo.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://colorcode.revoxera.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://colorcode.revoxera.com/blog" }
+  ]
 };
 
 export default function BlogPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-12">
         
         {/* Header */}
         <div className="space-y-3">
-          <div className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+          <div className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
             Articles & Guides
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
             Color & Web Design Blog
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">
@@ -37,10 +65,10 @@ export default function BlogPage() {
           {BLOG_POSTS.map((post) => (
             <article
               key={post.slug}
-              className="p-6 sm:p-8 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-xs transition-all space-y-3 group"
+              className="p-6 sm:p-8 rounded-2xl border border-gray-200 bg-white hover:border-emerald-300 hover:shadow-xs transition-all space-y-3 group"
             >
               <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
-                <span className="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-700 font-medium">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-100">
                   {post.category}
                 </span>
                 <span>•</span>
@@ -52,7 +80,7 @@ export default function BlogPage() {
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-rose-600 transition-colors">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">
                 <Link href={`/blog/${post.slug}`}>
                   {post.title}
                 </Link>
@@ -65,29 +93,13 @@ export default function BlogPage() {
               <div className="pt-2">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-900 group-hover:text-rose-600 group-hover:translate-x-1 transition-all"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 group-hover:text-emerald-800 group-hover:translate-x-1 transition-all"
                 >
-                  Read Guide <ArrowRight className="w-3.5 h-3.5" />
+                  Read Full Article <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Bottom Tool Recommendation */}
-        <div className="p-6 rounded-xl border border-gray-200 bg-gray-50/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h3 className="text-sm font-bold text-gray-900">Need to calculate values now?</h3>
-            <p className="text-xs text-gray-500">
-              Check out our client-side tools for palettes, gradients, and WCAG contrast.
-            </p>
-          </div>
-          <Link
-            href="/"
-            className="px-4 py-2 bg-gray-900 hover:bg-black text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
-          >
-            Launch Color Picker
-          </Link>
         </div>
 
       </main>

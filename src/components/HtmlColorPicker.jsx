@@ -21,6 +21,8 @@ import {
 import Link from "next/link";
 import { getName } from "@/lib/ntc";
 import { FeatureDemos } from "./FeatureDemos";
+import { UiLivePreview } from "./home/UiLivePreview";
+import { HomeFaqAndGuides } from "./home/HomeFaqAndGuides";
 
 // Color math helpers
 function hsvToRgb(h, s, v) {
@@ -129,12 +131,26 @@ function getRelativeLuminance(r, g, b) {
 }
 
 const TRENDING_PALETTES = [
-  { name: "Emerald Forest", colors: ["#064e3b", "#047857", "#10b981", "#6ee7b7", "#ecfdf5"] },
-  { name: "Nordic Slate", colors: ["#0f172a", "#334155", "#64748b", "#cbd5e1", "#f8fafc"] },
-  { name: "Cyber Sunset", colors: ["#2e0249", "#570a57", "#a91079", "#f806cc", "#ff99fe"] },
-  { name: "Warm Terracotta", colors: ["#4a150e", "#7c2d12", "#c2410c", "#fb923c", "#ffedd5"] },
-  { name: "Ocean Depths", colors: ["#082f49", "#0369a1", "#0ea5e9", "#7dd3fc", "#f0f9ff"] },
-  { name: "Matcha Latte", colors: ["#283618", "#606c38", "#dda15e", "#bc6c25", "#fefae0"] },
+  // Modern UI
+  { name: "Emerald SaaS", category: "Modern UI", colors: ["#064e3b", "#047857", "#10b981", "#6ee7b7", "#ecfdf5"] },
+  { name: "Nordic Slate", category: "Modern UI", colors: ["#0f172a", "#334155", "#64748b", "#cbd5e1", "#f8fafc"] },
+  { name: "Indigo Modern", category: "Modern UI", colors: ["#312e81", "#4338ca", "#6366f1", "#a5b4fc", "#eef2ff"] },
+  // Pastel & Soft
+  { name: "Pastel Macaron", category: "Pastel", colors: ["#fbcfe8", "#fde68a", "#a7f3d0", "#bae6fd", "#ddd6fe"] },
+  { name: "Matcha Latte", category: "Pastel", colors: ["#283618", "#606c38", "#dda15e", "#bc6c25", "#fefae0"] },
+  { name: "Lavender Mist", category: "Pastel", colors: ["#4c1d95", "#7c3aed", "#a78bfa", "#ddd6fe", "#f5f3ff"] },
+  // Cyberpunk & Neon
+  { name: "Cyber Sunset", category: "Cyberpunk", colors: ["#2e0249", "#570a57", "#a91079", "#f806cc", "#ff99fe"] },
+  { name: "Neon Matrix", category: "Cyberpunk", colors: ["#052e16", "#14532d", "#16a34a", "#4ade80", "#bbf7d0"] },
+  { name: "Electric Blue", category: "Cyberpunk", colors: ["#03071e", "#023e8a", "#0077b6", "#00b4d8", "#90e0ef"] },
+  // Earthy & Retro
+  { name: "Warm Terracotta", category: "Earthy", colors: ["#4a150e", "#7c2d12", "#c2410c", "#fb923c", "#ffedd5"] },
+  { name: "Autumn Leaves", category: "Earthy", colors: ["#78350f", "#b45309", "#d97706", "#f59e0b", "#fef3c7"] },
+  { name: "Forest Moss", category: "Earthy", colors: ["#143601", "#245501", "#538d22", "#73a942", "#aad576"] },
+  // Dark Mode Accents
+  { name: "Obsidian Purple", category: "Dark Mode", colors: ["#09090b", "#18181b", "#3f3f46", "#a855f7", "#e9d5ff"] },
+  { name: "Midnight Rose", category: "Dark Mode", colors: ["#020617", "#0f172a", "#1e293b", "#f43f5e", "#ffe4e6"] },
+  { name: "Ocean Depths", category: "Dark Mode", colors: ["#082f49", "#0369a1", "#0ea5e9", "#7dd3fc", "#f0f9ff"] },
 ];
 
 export function HtmlColorPicker() {
@@ -148,6 +164,7 @@ export function HtmlColorPicker() {
   const [copiedKey, setCopiedKey] = useState(null);
   const [showExportModal, setShowExportModal] = useState(false);
   const [hasEyeDropper, setHasEyeDropper] = useState(false);
+  const [paletteCategory, setPaletteCategory] = useState("All");
 
   const pickerRef = useRef(null);
   const isDraggingPicker = useRef(false);
@@ -395,12 +412,20 @@ export function HtmlColorPicker() {
       } else if (e.key === "c" || e.key === "C") {
         e.preventDefault();
         copyToClipboard(hex, "keyboard_hex");
+      } else if (e.key === "e" || e.key === "E") {
+        e.preventDefault();
+        setShowExportModal(prev => !prev);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [generateRandomColor, hex]);
+
+  const filteredPalettes = useMemo(() => {
+    if (paletteCategory === "All") return TRENDING_PALETTES;
+    return TRENDING_PALETTES.filter((p) => p.category === paletteCategory);
+  }, [paletteCategory]);
 
   // Download SVG Palette File
   const handleDownloadSvg = () => {
@@ -453,7 +478,7 @@ export function HtmlColorPicker() {
             HTML Color Codes
           </h1>
           <div className="text-xs text-gray-500 font-medium">
-            Shortcuts: <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">Space</kbd> Random · <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">C</kbd> Copy
+            Shortcuts: <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">Space</kbd> Random · <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">C</kbd> Copy · <kbd className="px-1.5 py-0.5 bg-gray-100 border border-gray-300 rounded text-[10px] font-mono font-semibold">E</kbd> Export
           </div>
         </div>
         <p className="text-sm sm:text-base text-gray-600 max-w-2xl leading-relaxed">
@@ -780,9 +805,12 @@ export function HtmlColorPicker() {
 
       </div>
 
+      {/* Live Component UI Playground */}
+      <UiLivePreview hex={hex} colorName={colorName} colorMood={colorMood} />
+
       {/* Trending & Curated Palettes Feature Section */}
       <section className="space-y-4 pt-2">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="space-y-0.5">
             <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-1.5">
               <Bookmark className="w-4 h-4 text-emerald-600" />
@@ -792,16 +820,34 @@ export function HtmlColorPicker() {
               Click any color swatch to load it into the workbench immediately.
             </p>
           </div>
+
+          {/* Palette Mood Filter Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+            {["All", "Modern UI", "Pastel", "Cyberpunk", "Earthy", "Dark Mode"].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setPaletteCategory(cat)}
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  paletteCategory === cat
+                    ? "bg-emerald-600 text-white shadow-2xs"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {TRENDING_PALETTES.map((pal) => (
+          {filteredPalettes.map((pal) => (
             <div
               key={pal.name}
               className="p-3 bg-white border border-gray-200 rounded-xl space-y-2 hover:border-emerald-300 hover:shadow-xs transition-all"
             >
-              <div className="text-xs font-bold text-gray-800 truncate">
-                {pal.name}
+              <div className="flex items-center justify-between text-xs font-bold text-gray-800">
+                <span className="truncate">{pal.name}</span>
+                <span className="text-[10px] text-gray-400 font-normal">{pal.category}</span>
               </div>
               <div className="flex h-6 rounded-md overflow-hidden border border-gray-200">
                 {pal.colors.map((c) => (
@@ -1027,41 +1073,8 @@ export function HtmlColorPicker() {
       {/* Interactive Tool Demos & Feature Highlights */}
       <FeatureDemos />
 
-      {/* Human, Educational Guide Content below the tool */}
-      <section className="pt-8 border-t border-gray-200 space-y-6 text-gray-700 text-sm leading-relaxed max-w-4xl">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-          About HTML Color Codes & Color Formats
-        </h2>
-        <p>
-          HTML color codes are used to define colors within web pages, user interfaces, and graphic design assets. Colors can be defined in multiple formats depending on your technical workflow and rendering engine:
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-          <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-1">
-            <h3 className="font-semibold text-gray-900">Hexadecimal (HEX)</h3>
-            <p className="text-xs text-gray-600">
-              Six-character representation of RGB values in base-16 format (e.g. <code className="text-gray-800">#059669</code>). The first pair represents red, the middle green, and the last blue.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-1">
-            <h3 className="font-semibold text-gray-900">RGB & RGBA</h3>
-            <p className="text-xs text-gray-600">
-              Defines intensity for Red, Green, and Blue from 0 to 255. RGBA includes an alpha channel for opacity (e.g. <code className="text-gray-800">rgba(5, 150, 105, 0.9)</code>).
-            </p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-1">
-            <h3 className="font-semibold text-gray-900">HSL (Hue, Saturation, Lightness)</h3>
-            <p className="text-xs text-gray-600">
-              A cylindrical coordinate system that is much more intuitive for humans. Hue is given in degrees (0–360°), while saturation and lightness are percentages.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-1">
-            <h3 className="font-semibold text-gray-900">OKLCH (CSS Color 4)</h3>
-            <p className="text-xs text-gray-600">
-              The modern perceptual color space that guarantees uniform perceived lightness across all hues, preventing banding and unexpected shifts in luminance.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Comprehensive Guides, Workflow, Comparison Table & Visible Interactive FAQs */}
+      <HomeFaqAndGuides />
     </div>
   );
 }

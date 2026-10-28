@@ -12,6 +12,7 @@ import {
   Lock
 } from "lucide-react";
 import Link from "next/link";
+import { ToolSeoContent } from "./seo/ToolSeoContent";
 
 const GradientGenerator = dynamic(() => import("./tools/GradientGenerator").then(mod => mod.GradientGenerator), { ssr: false });
 const PaletteGenerator = dynamic(() => import("./tools/PaletteGenerator").then(mod => mod.PaletteGenerator), { ssr: false });
@@ -92,6 +93,7 @@ export function ColorBeastTool({ initialTool = "picker" }) {
               {initialTool === "shades" && <ShadesTints />}
               {initialTool === "tailwind" && <TailwindReference />}
               {initialTool === "blindness" && <BlindnessSim />}
+              {initialTool === "details" && <ColorDetails />}
             </div>
           </div>
         )}
@@ -128,6 +130,9 @@ export function ColorBeastTool({ initialTool = "picker" }) {
             </p>
           </div>
         </section>
+
+        {/* Rich SEO Content & In-Depth Tool Documentation */}
+        {initialTool !== "picker" && <ToolSeoContent toolKey={initialTool} />}
 
       </main>
 

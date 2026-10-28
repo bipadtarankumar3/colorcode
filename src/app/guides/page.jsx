@@ -5,25 +5,53 @@ import Link from "next/link";
 import { BLOG_POSTS } from "../../lib/blogData";
 
 export const metadata = {
-  title: "Design & Accessibility Guides | Color Codes",
+  title: "Design & Accessibility Guides | Color Codes by Revoxera",
   description: "Comprehensive guides on color theory, harmonic palettes, WCAG 2.1 accessibility standards, and design system color tokens.",
   alternates: {
     canonical: "https://colorcode.revoxera.com/guides",
   },
+  openGraph: {
+    title: "Design & Accessibility Guides | Color Codes",
+    description: "Comprehensive guides on color theory, harmonic palettes, WCAG 2.1 accessibility standards, and design system color tokens.",
+    url: "https://colorcode.revoxera.com/guides",
+    siteName: "Color Codes by Revoxera",
+    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Color Guides" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Design & Accessibility Guides | Color Codes",
+    description: "Comprehensive guides on color theory, harmonic palettes, WCAG 2.1 accessibility standards, and design system color tokens.",
+    images: ["/logo.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://colorcode.revoxera.com" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://colorcode.revoxera.com/guides" }
+  ]
 };
 
 export default function GuidesIndexPage() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-12">
         {/* Page Header */}
         <div className="space-y-3">
-          <div className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+          <div className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
             Guides & Documentation
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
             Color Guides & Best Practices
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">
@@ -36,10 +64,10 @@ export default function GuidesIndexPage() {
           {BLOG_POSTS.map((guide) => (
             <div
               key={guide.slug}
-              className="p-6 sm:p-8 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-xs transition-all space-y-3 group"
+              className="p-6 sm:p-8 rounded-2xl border border-gray-200 bg-white hover:border-emerald-300 hover:shadow-xs transition-all space-y-3 group"
             >
               <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
-                <span className="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-700 font-medium">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-100">
                   {guide.category}
                 </span>
                 <span>•</span>
@@ -49,7 +77,7 @@ export default function GuidesIndexPage() {
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-rose-600 transition-colors">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">
                 <Link href={`/blog/${guide.slug}`}>
                   {guide.title}
                 </Link>
@@ -62,7 +90,7 @@ export default function GuidesIndexPage() {
               <div className="pt-2">
                 <Link
                   href={`/blog/${guide.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-900 group-hover:text-rose-600 group-hover:translate-x-1 transition-all"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 group-hover:text-emerald-800 group-hover:translate-x-1 transition-all"
                 >
                   Read Full Guide <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
